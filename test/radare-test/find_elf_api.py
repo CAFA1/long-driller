@@ -4,6 +4,7 @@ import r2pipe
 import sys
 import re
 import json
+g_func_name_addr_dict={} #func_name  func_addr_int
 
 def get_file_name_strings(file_dir,api):
 	string_interesting=api
@@ -33,11 +34,19 @@ main 0x4006dd [CALL] call sym.imp.strcpy
 '''
 #return the file name which has the func
 def get_func_elf(file_name_list,func_name):
+	global g_func_name_addr_dict
 	file_elf_func=[]
 	for file_tmp in file_name_list:
 		r2 = r2pipe.open(file_tmp)
 		#axt find reference
-		read_str = r2.cmd("aaa;afl |grep "+'sym.imp.'+func_name)
+		func_json = r2.cmd("aaa;aflj ")
+		func_list = json.loads(func_json)
+		#
+		for func_dict in func_list:
+			offset_int=func_dict['offset']
+			g_func_name_addr_dict[func_dict['name']]=offset_int
+			if func_dict['name']=='sym.imp.'+func_name:
+		'''
 		#print read_str
 		if(read_str!=''):
 			afl_str = r2.cmd('axt @ sym.imp.'+func_name)
@@ -49,6 +58,7 @@ def get_func_elf(file_name_list,func_name):
 			#print afl_str
 			file_elf_func.append(file_tmp)
 			#print file_tmp
+		'''
 	return file_elf_func
 
 
