@@ -1,0 +1,32 @@
+before_script:
+    - angr-test sync hard
+
+### local
+tracer:
+    script: "angr-test tracer"
+    tags: [angr]
+
+lint:
+    script: "angr-test lint"
+    tags: [angr]
+
+### first level
+driller:
+    script: "angr-test driller"
+    tags: [angr]
+
+rex:
+    script: "angr-test rex"
+    tags: [angr]
+
+colorguard:
+    script: "angr-test colorguard"
+    tags: [angr]
+
+patcherex:
+    script: "angr-test patcherex"
+    tags: [angr]
+
+alphack:
+    script: "angr-test alphack"
+    tags: [angr]

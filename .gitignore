@@ -1,0 +1,8 @@
+.idea/*
+shellphish-afl/*
+binaries/
+archinfo/
+cle/
+archinfo/
+celery/
+shellphish-qemu/

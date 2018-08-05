@@ -1,0 +1,5 @@
+cle
+angr
+shellphish-qemu
+shellphish-afl
+topsecret
