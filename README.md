@@ -1,7 +1,7 @@
 # Install
 1. preinstall  
-sudo apt-get install python-dev libffi-dev build-essential python-pip git  
-sudo apt-get build-dep qemu-system  
+	sudo apt-get install python-dev libffi-dev build-essential python-pip git  
+	sudo apt-get build-dep qemu-system  
 2. capstone source compile  
 ./make.sh  
 sudo ./make.sh install  

@@ -35,7 +35,7 @@ main 0x4006dd [CALL] call sym.imp.strcpy
 #return the file name which has the func
 def get_func_elf(file_name_list,func_name):
 	global g_func_name_addr_dict
-	file_elf_func=[]
+	file_elf_func=set()
 	for file_tmp in file_name_list:
 		r2 = r2pipe.open(file_tmp)
 		#axt find reference
@@ -46,19 +46,8 @@ def get_func_elf(file_name_list,func_name):
 			offset_int=func_dict['offset']
 			g_func_name_addr_dict[func_dict['name']]=offset_int
 			if func_dict['name']=='sym.imp.'+func_name:
-		'''
-		#print read_str
-		if(read_str!=''):
-			afl_str = r2.cmd('axt @ sym.imp.'+func_name)
-			afl_list=afl_str.split('\n')
-			for afl_func_tmp in afl_list:
-				func_name_tmp=afl_func_tmp.split(' ')[0]
-				call_func_addr=afl_func_tmp.split(' ')[1]
-				print afl_list
-			#print afl_str
-			file_elf_func.append(file_tmp)
-			#print file_tmp
-		'''
+				file_elf_func.add(file_tmp)
+				break
 	return file_elf_func
 
 
@@ -71,6 +60,9 @@ if __name__ == '__main__':
 	dir1= sys.argv[1]
 	api=sys.argv[2]
 	files_name=get_file_name_strings(dir1,api)
-	files_name=get_func_elf(files_name,api)
+	files_name_set=get_func_elf(files_name,api)
+	for elf in files_name_set:
+		cmd='python elf_analysis.py '+elf+' strcpy'
+		os.system(cmd)
 
 	print 'ok'
