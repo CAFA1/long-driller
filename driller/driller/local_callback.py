@@ -125,7 +125,13 @@ if __name__ == "__main__":
             fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
             filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             filepath = os.path.join(driller_queue_dir, filepath)
+            #long 
+            debug_flag=1
+            if debug_flag:
+                l.warning("found %d new inputs:%s", count,new_input[1])
             with open(filepath, "wb") as f:
                 f.write(new_input[1])
             count += 1
+    #long print the string solved
     l.warning("found %d new inputs", count)
+    
