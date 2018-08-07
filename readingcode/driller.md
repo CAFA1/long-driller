@@ -570,14 +570,18 @@
 ## 29.4 _timer定时器
 	设置定时器，来定时观察afl是否stuck了，若stuck了，就调用driller。
 ### 29.4.1 Fuzzer类__init__初始化self._timer
-	if self.force_interval is None:
-		l.warning("not forced")
-		self._timer = InfiniteTimer(30, self._timer_callback)设置定时间隔
-	else:
-		l.warning("forced")
-		self._timer = InfiniteTimer(self.force_interval, self._timer_callback)
+	class Fuzzer(object):
+	''' Fuzzer object, spins up a fuzzing job on a binary '''
 
-	self._stuck_callback = stuck_callback
+	def __init__(): #function
+		if self.force_interval is None:
+			l.warning("not forced")
+			self._timer = InfiniteTimer(30, self._timer_callback)设置定时间隔
+		else:
+			l.warning("forced")
+			self._timer = InfiniteTimer(self.force_interval, self._timer_callback)
+
+		self._stuck_callback = stuck_callback
 ### 29.4.2 InfiniteTimer类
 	class InfiniteTimer():
 		"""A Timer class that does not stop, unless you want it to."""

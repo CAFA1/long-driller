@@ -258,7 +258,7 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         for ii in (itertools.count() if n is None else xrange(0, n)):
             if not self.complete() and self._stashes[stash]:
                 #long sim_manager.py run : print active state
-                debug_flag=1
+                debug_flag=0
                 if debug_flag:
                     print str(ii)
                     for active_state in self.stashes['active'] :
@@ -329,7 +329,7 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         # ------------------ Compatibility layer ---------------->8
         bucket = defaultdict(list)
         #long sim_manager.py step
-        debug_flag=1
+        debug_flag=0
         for state in self._fetch_states(stash=stash):
 
             goto = self.filter(state, filter_func)
