@@ -224,19 +224,19 @@
 			l.debug("Input is %r.", self.input)
 
 			while simgr.active and simgr.one_active.globals['bb_cnt'] < len(r.trace):
-				simgr.step() 见31.4
+				simgr.step() #liu 见31.4
 
 				# Check here to see if a crash has been found.
 				if self.redis and self.redis.sismember(self.identifier + '-finished', True):
 					return
 
-				if 'diverted' not in simgr.stashes:
+				if 'diverted' not in simgr.stashes: #liu in step(31.4) function find the 'diverted' state
 					continue
 				#http://angr.io/api-doc/angr.html
 				while simgr.diverted:
 					state = simgr.diverted.pop(0)
 					l.debug("Found a diverted state, exploring to some extent.")
-					w = self._writeout(state.history.bbl_addrs[-1], state)
+					w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample
 					if w is not None:
 						yield w
 					for i in self._symbolic_explorer_stub(state):
@@ -308,7 +308,7 @@
 	w = self._writeout(state.history.bbl_addrs[-1], state)
 
 	def _writeout(self, prev_addr, state):
-			generated = state.posix.stdin.load(0, state.posix.stdin.pos) 只有标准输入的求解！！！
+			generated = state.posix.stdin.load(0, state.posix.stdin.pos) #liu 只有标准输入的求解！！！
 			generated = state.se.eval(generated, cast_to=str)
 
 			key = (len(generated), prev_addr, state.addr)
@@ -364,13 +364,13 @@
 
 				l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
 
-				if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
+				if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs': #liu traversal algorithm
 					state.preconstrainer.remove_preconstraints()
 
 					if state.satisfiable():
 						# A completely new state transition.
 						l.debug("Found a completely new transition, putting into 'diverted' stash.")
-						simgr.stashes['diverted'].append(state)
+						simgr.stashes['diverted'].append(state) #liu add the new state to stashes
 						self.encounters.add(transition)
 
 					else:
@@ -2402,16 +2402,16 @@
 
 				l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
 
-				if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs': #如果fuzzer没有遍历到，driller也没有遍历到，并且不是恒假
+				if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs': #liu 如果fuzzer没有遍历到，driller也没有遍历到，并且不是恒假
 
-					state.preconstrainer.remove_preconstraints() 移除输入约束
+					state.preconstrainer.remove_preconstraints() #liu 移除输入约束
 
 
 					if state.satisfiable():
 						# A completely new state transition.
 						l.debug("Found a completely new transition, putting into 'diverted' stash.")
-						simgr.stashes['diverted'].append(state) 如果可解，则加入diverted stash
-						self.encounters.add(transition) #encounters记录遍历过的边，是一个set集合，他的初始化为###################self.encounters.update(izip(self.trace, islice(self.trace, 1, None)))根据trace
+						simgr.stashes['diverted'].append(state) #liu 如果可解，则加入diverted stash
+						self.encounters.add(transition) #liu encounters记录遍历过的边，是一个set集合，他的初始化为###################self.encounters.update(izip(self.trace, islice(self.trace, 1, None)))根据trace
 
 					else:
 						l.debug("State at %#x is not satisfiable.", transition[1])
