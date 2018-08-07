@@ -6,3 +6,5 @@ cle/
 archinfo/
 celery/
 shellphish-qemu/
+test/control_flow/control_dependency
+
