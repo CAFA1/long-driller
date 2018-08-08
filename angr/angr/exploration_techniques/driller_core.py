@@ -63,8 +63,9 @@ class DrillerCore(ExplorationTechnique):
                 mapped_to = self.project.loader.find_object_containing(state.addr).binary
 
                 l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
-
-                if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
+                #long disable encounters
+                #if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
+                if not hit and not self._has_false(state) and mapped_to != 'cle##externs':
                     state.preconstrainer.remove_preconstraints()
 
                     if state.satisfiable():
