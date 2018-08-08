@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-int check(char*x,char*y)
+char check(char*x,char*y)
 {
 	if(strcmp(x,y))
-		return 0;
+		return 0+strcmp(x,y);
 	else
-		return 1;
+		return 1+strcmp(x,y);
 }
 int main(int argc, char*argv[])
 {
@@ -20,4 +20,5 @@ int main(int argc, char*argv[])
 		printf("cwd cmd\n");
 	else
 		printf("no cwd cmd\n");
+	return 1;
 }

@@ -128,7 +128,7 @@ if __name__ == "__main__":
             #long 
             debug_flag=1
             if debug_flag:
-                l.warning("found %d new inputs:%s", count,new_input[1])
+                l.warning("found %d new inputs:%s", count,repr(new_input[1]))
             with open(filepath, "wb") as f:
                 f.write(new_input[1])
             count += 1
