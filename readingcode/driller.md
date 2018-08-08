@@ -791,11 +791,11 @@
 			"timeout", "-k", str(_timeout+10), str(_timeout),
 			sys.executable, os.path.abspath(__file__),
 			_binary_path, _fuzzer_out_dir, _bitmap_path, _path_to_input_to_drill
-		)  就是调用自身python文件
+		)  #liu 就是调用自身python文件
 		if length_extension:
 			args += ('--length-extension', str(length_extension))
 
-		p = subprocess.Popen(args, stdout=subprocess.PIPE)
+		p = subprocess.Popen(args, stdout=subprocess.PIPE) # liu create a new process
 		print p.communicate()
 ### 29.4.8 driller/local_callback.py __main__
 	# this is for running with bash timeout
@@ -833,7 +833,7 @@
 		for input_to_drill in inputs_to_drill:
 			d = driller.Driller(args.binary_path, input_to_drill, fuzzer_bitmap) 见28.1
 			count = 0
-			for new_input in d.drill_generator():
+			for new_input in d.drill_generator():# liu real offline symbolic execution
 				id_num = len(os.listdir(driller_queue_dir))
 				fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
 				filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
@@ -853,7 +853,7 @@
 		if config.DRILL_TIMEOUT is not None:
 			signal.alarm(config.DRILL_TIMEOUT)
 
-		for i in self._drill_input(): 见28.3
+		for i in self._drill_input(): #liu 见28.3
 			yield i
 ### 29.4.10 _timer.start 开启计时器
 	fuzzer/fuzzer.py

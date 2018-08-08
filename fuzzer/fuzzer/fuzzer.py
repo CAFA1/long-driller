@@ -223,7 +223,7 @@ class Fuzzer(object):
         if self.force_interval is None:
             l.warning("not forced")
             #long time_out is 30 originally.
-            self._timer = InfiniteTimer(3, self._timer_callback)
+            self._timer = InfiniteTimer(10, self._timer_callback)
         else:
             l.warning("forced")
             self._timer = InfiniteTimer(self.force_interval, self._timer_callback)

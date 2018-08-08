@@ -155,6 +155,7 @@ class Driller(object):
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
                     yield w
+                #long disable
                 #for i in self._symbolic_explorer_stub(state):
                 #    yield i
 
@@ -235,6 +236,9 @@ class Driller(object):
 
     def _writeout(self, prev_addr, state):
         generated = state.posix.stdin.load(0, state.posix.stdin.pos)
+        #long
+        if(state.addr==0x4006f9):
+            print state.se.constraints
         generated = state.se.eval(generated, cast_to=str)
 
         key = (len(generated), prev_addr, state.addr)

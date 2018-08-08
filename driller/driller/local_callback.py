@@ -15,6 +15,8 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
     _fuzzer_out_dir = fuzz.out_dir
     _bitmap_path = os.path.join(_fuzzer_out_dir, 'fuzzer-master', "fuzz_bitmap")
     _timeout = drill._worker_timeout
+    #long
+    print "starting drilling of ", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill)
     l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
     args = (
         "timeout", "-k", str(_timeout+10), str(_timeout),
