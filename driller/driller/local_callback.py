@@ -31,7 +31,26 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
 
     p = subprocess.Popen(args, stdout=subprocess.PIPE)
     print p.communicate()
+#long
+def _run_drill_long(_binary_path,_timeout, queue_dir, _path_to_input_to_drill, length_extension=None):
+    #_binary_path = binary_path
+    _fuzzer_out_dir = queue_dir
+    _bitmap_path = os.path.join(_fuzzer_out_dir,  "bitmap")
+    #_timeout = drill._worker_timeout
+    #long
+    print "starting drilling of ", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill)
+    os.system('cat '+_path_to_input_to_drill)
+    l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
+    args = (
+        "timeout", "-k", str(_timeout+10), str(_timeout),
+        sys.executable, os.path.abspath(__file__),
+        _binary_path, _fuzzer_out_dir, _bitmap_path, _path_to_input_to_drill
+    )
+    if length_extension:
+        args += ('--length-extension', str(length_extension))
 
+    p = subprocess.Popen(args, stdout=subprocess.PIPE)
+    print p.communicate()
 
 class LocalCallback(object):
     def __init__(self, num_workers=1, worker_timeout=10*60, length_extension=None):
@@ -54,13 +73,14 @@ class LocalCallback(object):
         queue_files = [os.path.join(queue_path, q) for q in queue_files]
 
         return queue_files
-
+    
     def driller_callback(self, fuzz):
         l.warning("Driller stuck callback triggered!")
         # remove any workers that aren't running
         self._running_workers = [x for x in self._running_workers if x.is_alive()]
 
         # get the files in queue
+        #long
         queue = self._queue_files(fuzz)
         #for i in range(1, fuzz.fuzz_id):
         #    fname = "fuzzer-%d" % i
@@ -81,25 +101,7 @@ class LocalCallback(object):
             proc.start()
             self._running_workers.append(proc)
     __call__ = driller_callback
-    #long driller
-    def driller_explore(self, queue_path):
-        
-        queue_files = os.listdir(queue_path)
-        queue = [os.path.join(queue_path, q) for q in queue_files]
-        print queue
-        not_drilled = set(queue) - self._already_drilled_inputs
-        if len(not_drilled) == 0:
-            l.warning("no inputs left to drill")
-
-        while len(self._running_workers) < self._num_workers and len(not_drilled) > 0:
-            to_drill_path = list(not_drilled)[0]
-            not_drilled.remove(to_drill_path)
-            self._already_drilled_inputs.add(to_drill_path)
-
-            proc = multiprocessing.Process(target=_run_drill, args=(self, fuzz, to_drill_path),
-                    kwargs={'length_extension': self._length_extension})
-            proc.start()
-            self._running_workers.append(proc)
+    
     def kill(self):
         for p in self._running_workers:
             try:
@@ -129,6 +131,9 @@ if __name__ == "__main__":
     # create a folder
     driller_dir = os.path.join(args.fuzzer_out_dir, "driller")
     driller_queue_dir = os.path.join(driller_dir, "queue")
+    #long
+    driller_queue_dir=args.fuzzer_out_dir
+
     try: os.mkdir(driller_dir)
     except OSError: pass
     try: os.mkdir(driller_queue_dir)
@@ -145,7 +150,11 @@ if __name__ == "__main__":
         count = 0
         for new_input in d.drill_generator():
             id_num = len(os.listdir(driller_queue_dir))
-            fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
+            #fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
+            #filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
+            #filepath = os.path.join(driller_queue_dir, filepath)
+            #long
+            fuzzer_from = os.path.basename(args.path_to_input_to_drill).split('id:')[1].split(',')[0]
             filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             filepath = os.path.join(driller_queue_dir, filepath)
             #long 

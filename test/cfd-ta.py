@@ -2,11 +2,11 @@
 CTCF-BR=set()
 trace = QEMURunner(b, s) 
 s1=full_init_state()
-preconstrain_file(s, stdin) 
+preconstrain_file(s1,s, stdin) 
 
 while bb_cnt < len(trace):
 	step to a branch state s2 {state|state has two successor states}
-	select the successor state s3 {state| state is not in the trace}
+	select one state s3 {state| state is not in the trace} from the two successor states
 	remove_preconstraints() 
 
 

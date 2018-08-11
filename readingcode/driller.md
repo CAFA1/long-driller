@@ -25,8 +25,8 @@
 		- [29.4.2 InfiniteTimer类](#2942-infinitetimer类)
 		- [29.4.3 Fuzzer::_timer_callback回调函数 fuzzer/fuzzer.py](#2943-fuzzer_timer_callback回调函数-fuzzerfuzzerpy)
 			- [29.4.3.1 stats来自afl目录fuzzer_stats](#29431-stats来自afl目录fuzzer_stats)
-		- [29.4.4 _stuck_callback函数<-_timer_callback函数](#2944-_stuck_callback函数-_timer_callback函数)
-		- [29.4.5 drill_extension回调函数<-_stuck_callback](#2945-drill_extension回调函数-_stuck_callback)
+		- [29.4.4 _stuck_callback<-_timer_callback](#2944-_stuck_callback-_timer_callback)
+		- [29.4.5 drill_extension<-_stuck_callback](#2945-drill_extension-_stuck_callback)
 		- [29.4.6 LocalCallback:: driller_callback <-drill_extension](#2946-localcallback-driller_callback--drill_extension)
 			- [29.4.6.1 _queue_files 索引queue目录里面的文件名](#29461-_queue_files-索引queue目录里面的文件名)
 		- [29.4.7 _run_drill <- driller_callback](#2947-_run_drill---driller_callback)
@@ -676,7 +676,13 @@
 	(2) timer trigger the  _timer_callback function
 	self._stuck_callback(self)
 	(3) _stuck_callback is assigned by the Fuzzer init function
-	
+	drill_extension = driller.LocalCallback(num_workers=args.driller_workers, worker_timeout=args.driller_timeout, length_extension=args.length_extension)
+	stuck_callback = (
+		(lambda f: (grease_extension(f), drill_extension(f))) if drill_extension and grease_extension
+		else drill_extension or grease_extension
+	)
+	(4) driller_callback <- _stuck_callback
+
 ### 29.4.1 Fuzzer类__init__初始化self._timer
 	class Fuzzer(object):
 	''' Fuzzer object, spins up a fuzzing job on a binary '''
@@ -726,7 +732,7 @@
 							stats[fuzzer_dir][key.strip()] = val.strip()
 
 		return stats
-### 29.4.4 _stuck_callback函数<-_timer_callback函数
+### 29.4.4 _stuck_callback<-_timer_callback
 	初始化Fuzzer对象的时候，传参（shellphuzz文件中）
 	stuck_callback = (
 			(lambda f: (grease_extension(f), drill_extension(f))) if drill_extension and grease_extension
@@ -738,7 +744,7 @@
 			create_dictionary=not args.no_dictionary, stuck_callback=stuck_callback, time_limit=args.timeout,
 			memory=args.memory, seeds=seeds, timeout=args.run_timeout
 		)
-### 29.4.5 drill_extension回调函数<-_stuck_callback
+### 29.4.5 drill_extension<-_stuck_callback
 	if args.driller_workers:
 		print "[*] Drilling..."
 		drill_extension = driller.LocalCallback(num_workers=args.driller_workers, worker_timeout=args.driller_timeout, length_extension=args.length_extension)

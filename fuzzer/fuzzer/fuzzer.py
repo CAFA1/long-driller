@@ -54,8 +54,7 @@ class InfiniteTimer():
         else:
             pass
             #print "Timer never started or failed to initialize."
-
-
+        
 
 class Fuzzer(object):
     ''' Fuzzer object, spins up a fuzzing job on a binary '''
@@ -84,7 +83,7 @@ class Fuzzer(object):
         :param timeout: timeout for individual runs within AFL
         '''
 
-        print 'init fuzzer'
+        
         self.binary_path    = binary_path
         self.work_dir       = work_dir
         self.afl_count      = afl_count
