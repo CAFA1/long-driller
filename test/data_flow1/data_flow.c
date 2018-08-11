@@ -3,10 +3,11 @@
 #include <string.h>
 char check(char*x,char*y)
 {
-	if(strcmp(x,y))
-		return !strcmp(x,y);
+	int this_bool=(x[0]==y[0]&&x[1]==y[1]&&x[2]==y[2]);
+	if(this_bool)
+		return this_bool;
 	else
-		return !strcmp(x,y);
+		return this_bool;
 }
 int main(int argc, char*argv[])
 {

@@ -84,6 +84,7 @@ class Fuzzer(object):
         :param timeout: timeout for individual runs within AFL
         '''
 
+        print 'int fuzzer'
         self.binary_path    = binary_path
         self.work_dir       = work_dir
         self.afl_count      = afl_count

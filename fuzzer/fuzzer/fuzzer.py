@@ -84,6 +84,7 @@ class Fuzzer(object):
         :param timeout: timeout for individual runs within AFL
         '''
 
+        print 'init fuzzer'
         self.binary_path    = binary_path
         self.work_dir       = work_dir
         self.afl_count      = afl_count
@@ -246,7 +247,9 @@ class Fuzzer(object):
         self._timer.start()
 
         self._on = True
-
+    ### EXPOSED
+    def call_stuck_callback(self):
+        self._stuck_callback(self)
     @property
     def alive(self):
         if not self._on or not len(self.stats):
@@ -661,6 +664,7 @@ class Fuzzer(object):
             if ('fuzzer-master' in self.stats and 'pending_favs' in self.stats['fuzzer-master'] and \
                int(self.stats['fuzzer-master']['pending_favs']) == 0) or self.force_interval is not None:
                 self._stuck_callback(self)
+
 
     def __del__(self):
         self.kill()

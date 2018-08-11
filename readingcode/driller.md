@@ -515,7 +515,14 @@
 	在fuzzer没有发现新的transition的时候(Fuzzer::_timer_callback回调函数 fuzzer/fuzzer.py,见29.4.3)，调用driller（Fuzzer::_stuck_callback-> driller_callback，见29.4.8）来求解新路径。
 	Driller会执行afl queue中每一个样本，然后将新发现放到driller/queue。
 	Afl同步机制会从driller/queue获取driller新发现的样本，添加到自己的queue。
+	if args.driller_workers:
+	print "[*] Drilling..."
+	drill_extension = driller.LocalCallback(num_workers=args.driller_workers, worker_timeout=args.driller_timeout, length_extension=args.length_extension)
 
+	stuck_callback = (
+		(lambda f: (grease_extension(f), drill_extension(f))) if drill_extension and grease_extension
+		else drill_extension or grease_extension
+	)
 	print "[*] Creating fuzzer..."
 	fuzzer = fuzzer.Fuzzer(
 		args.binary, args.work_dir, afl_count=args.afl_cores, force_interval=args.force_interval,
@@ -663,19 +670,25 @@
 			print "string_%d=\"%s\"" % (strcnt.next(), s_val)
 ## 29.4 _timer定时器
 	设置定时器，来定时观察afl是否stuck了，若stuck了，就调用driller。
+	(1) Fuzzer init
+	self._timer = InfiniteTimer(30, self._timer_callback)  
+	self._stuck_callback = stuck_callback  
+	(2) timer trigger the  _timer_callback function
+	self._stuck_callback(self)
+	(3) _stuck_callback is assigned by the Fuzzer init function
+	
 ### 29.4.1 Fuzzer类__init__初始化self._timer
 	class Fuzzer(object):
 	''' Fuzzer object, spins up a fuzzing job on a binary '''
-
 	def __init__(): #function
 		if self.force_interval is None:
 			l.warning("not forced")
-			self._timer = InfiniteTimer(30, self._timer_callback)设置定时间隔
+			self._timer = InfiniteTimer(30, self._timer_callback) #liu 设置定时间隔
 		else:
 			l.warning("forced")
 			self._timer = InfiniteTimer(self.force_interval, self._timer_callback)
 
-		self._stuck_callback = stuck_callback
+		self._stuck_callback = stuck_callback #liu 
 ### 29.4.2 InfiniteTimer类
 	class InfiniteTimer():
 		"""A Timer class that does not stop, unless you want it to."""
@@ -1066,7 +1079,7 @@
 
 			if self.force_interval is None:
 				l.warning("not forced")
-				self._timer = InfiniteTimer(30, self._timer_callback)
+				self._timer = InfiniteTimer(30, self._timer_callback) #liu fuzzer timer
 			else:
 				l.warning("forced")
 				self._timer = InfiniteTimer(self.force_interval, self._timer_callback)

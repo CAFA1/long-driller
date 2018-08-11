@@ -9,12 +9,17 @@ import subprocess
 import multiprocessing
 
 l = logging.getLogger("local_callback")
+#long
+l.setLevel(logging.DEBUG)
 
 def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
     _binary_path = fuzz.binary_path
     _fuzzer_out_dir = fuzz.out_dir
     _bitmap_path = os.path.join(_fuzzer_out_dir, 'fuzzer-master', "fuzz_bitmap")
     _timeout = drill._worker_timeout
+    #long
+    print "starting drilling of ", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill)
+    os.system('cat '+_path_to_input_to_drill)
     l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
     args = (
         "timeout", "-k", str(_timeout+10), str(_timeout),
@@ -76,7 +81,25 @@ class LocalCallback(object):
             proc.start()
             self._running_workers.append(proc)
     __call__ = driller_callback
+    #long driller
+    def driller_explore(self, queue_path):
+        
+        queue_files = os.listdir(queue_path)
+        queue = [os.path.join(queue_path, q) for q in queue_files]
+        print queue
+        not_drilled = set(queue) - self._already_drilled_inputs
+        if len(not_drilled) == 0:
+            l.warning("no inputs left to drill")
 
+        while len(self._running_workers) < self._num_workers and len(not_drilled) > 0:
+            to_drill_path = list(not_drilled)[0]
+            not_drilled.remove(to_drill_path)
+            self._already_drilled_inputs.add(to_drill_path)
+
+            proc = multiprocessing.Process(target=_run_drill, args=(self, fuzz, to_drill_path),
+                    kwargs={'length_extension': self._length_extension})
+            proc.start()
+            self._running_workers.append(proc)
     def kill(self):
         for p in self._running_workers:
             try:
@@ -125,7 +148,13 @@ if __name__ == "__main__":
             fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
             filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             filepath = os.path.join(driller_queue_dir, filepath)
+            #long 
+            debug_flag=1
+            if debug_flag:
+                l.warning("found %d new inputs:%s", count,repr(new_input[1]))
             with open(filepath, "wb") as f:
                 f.write(new_input[1])
             count += 1
+    #long print the string solved
     l.warning("found %d new inputs", count)
+    

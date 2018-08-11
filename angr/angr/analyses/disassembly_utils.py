@@ -26,7 +26,8 @@ try:
     }
 except AttributeError:
     # The installed capstone is too old - it does not support cs.mips.MIPS_GRP_*
-    l.warning('Your version of capstone does not support MIPS instruction groups.')
+    #l.warning('Your version of capstone does not support MIPS instruction groups.')
+    pass
 
 
 INS_INFO = {

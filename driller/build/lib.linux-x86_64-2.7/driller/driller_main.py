@@ -152,11 +152,13 @@ class Driller(object):
             while simgr.diverted:
                 state = simgr.diverted.pop(0)
                 l.debug("Found a diverted state, exploring to some extent.")
+
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
                     yield w
-                for i in self._symbolic_explorer_stub(state):
-                    yield i
+                #long disable
+                #for i in self._symbolic_explorer_stub(state):
+                #    yield i
 
 ### EXPLORER
 
@@ -235,7 +237,10 @@ class Driller(object):
 
     def _writeout(self, prev_addr, state):
         generated = state.posix.stdin.load(0, state.posix.stdin.pos)
+        #long
+        #print repr(state.se.constraints)
         generated = state.se.eval(generated, cast_to=str)
+        #print '\ngenerated:'+generated+'\n'
 
         key = (len(generated), prev_addr, state.addr)
 
