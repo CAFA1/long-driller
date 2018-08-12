@@ -93,7 +93,7 @@ class Tracer(ExplorationTechnique):
                 # termination condition: we exhausted the dynamic trace log
                 if current.globals['bb_cnt'] >= len(self._trace):
                     return simgr
-# now, we switch through several ways that the dynamic and symbolic traces can interact
+                    # now, we switch through several ways that the dynamic and symbolic traces can interact
 
                 # basic, convenient case: the two traces match
                 if current.addr == self._trace[current.globals['bb_cnt']]:

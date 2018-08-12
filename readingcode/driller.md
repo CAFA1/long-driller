@@ -4,7 +4,7 @@
 - [28. driller](#28-driller)
 	- [28.1 driller.Driller](#281-drillerdriller)
 	- [28.2 d.drill()](#282-ddrill)
-	- [28.3 _drill_input()](#283-_drill_input)
+	- [28.3 _drill_input<-drill](#283-_drill_input-drill)
 		- [28.3.1 tracer实验（no）](#2831-tracer实验no)
 		- [28.3.2 angr hook实验（no）](#2832-angr-hook实验no)
 		- [28.3.3 preconstrain_file 将符号文件具体化，往状态约束里面添加这个约束](#2833-preconstrain_file-将符号文件具体化往状态约束里面添加这个约束)
@@ -146,6 +146,9 @@
 			self.start_time = time.time()
 
 			# Set of all the generated inputs.
+			'''
+			#liu
+			'''
 			self._generated = set()
 
 			# Set the memory limit specified in the config.
@@ -155,7 +158,7 @@
 			l.debug("[%s] drilling started on %s.", self.identifier, time.ctime(self.start_time))
 ## 28.2 d.drill()
 	new_inputs = d.drill()
-
+	#liu driller_main.py
 	def drill(self):
 			"""
 			Perform the drilling, finding more code coverage based off our existing input base.
@@ -175,16 +178,16 @@
 			if self.redis:
 				self.redis.sadd(self.identifier + '-traced', self.input)
 
-			list(self._drill_input())//liu call _drill_input
+			list(self._drill_input())#liu call _drill_input
 
 			if self.redis:
 				return len(self._generated)
 			else:
 				return self._generated
 	在redis中记录每个二进制traced的input字符串值。Sadd sismember用法
-## 28.3 _drill_input()
+## 28.3 _drill_input<-drill
 	list(self._drill_input())
-
+	#liu in driller_main.py
 	def _drill_input(self):
 			"""
 			Symbolically step down a path with a tracer, trying to concretize inputs for unencountered
@@ -219,7 +222,7 @@
 			simgr.use_technique(angr.exploration_techniques.Oppologist())
 			simgr.use_technique(self._core)
 
-			self._set_concretizations(simgr.one_active) 设置了阈值常数
+			self._set_concretizations(simgr.one_active) 
 
 			l.debug("Drilling into %r.", self.input)
 			l.debug("Input is %r.", self.input)
@@ -231,10 +234,10 @@
 				if self.redis and self.redis.sismember(self.identifier + '-finished', True):
 					return
 
-				if 'diverted' not in simgr.stashes: #liu in step(31.4) function find the 'diverted' state
+				if 'diverted' not in simgr.stashes: #liu in step(31.4) find the 'diverted' state
 					continue
 				#http://angr.io/api-doc/angr.html
-				while simgr.diverted:
+				while simgr.diverted:#liu make new sample for the diverted state at each step
 					state = simgr.diverted.pop(0)
 					l.debug("Found a diverted state, exploring to some extent.")
 					w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample
@@ -1433,6 +1436,29 @@
 					yield i
 
 	Hook层级关系
+	_handle_statement, engine.py:375
+	_handle_irsb, engine.py:257
+	_process, engine.py:185
+	process, engine.py:55
+	process, engine.py:135
+	successors, hub.py:128
+	successors, factory.py:61
+	step_state, oppologist.py:78
+	__call__, hookset.py:57
+	step, sim_manager.py:348             //liu 
+	_wrapper, immutability.py:24
+	__call__, hookset.py:60
+	step, tracer.py:179                  //liu 
+	__call__, hookset.py:57
+	step, driller_core.py:45             //liu 
+	__call__, hookset.py:57
+	_drill_input, driller_main.py:143
+	drill, driller_main.py:84
+	test_vul, driller_explore.py:18
+	<module>, driller_explore.py:31
+	run, pydevd.py:1068
+	main, pydevd.py:1658
+	<module>, pydevd.py:1664
 ## 31.1 sim_manager.py step 主要是分类可解不可解
 	@ImmutabilityMixin.immutable
 	def step(self, n=None, selector_func=None, step_func=None, stash='active', 默认从active的state执行
@@ -2248,7 +2274,7 @@
 				# termination condition: we exhausted the dynamic trace log
 				if current.globals['bb_cnt'] >= len(self._trace):
 					return simgr
-	# now, we switch through several ways that the dynamic and symbolic traces can interact
+				# now, we switch through several ways that the dynamic and symbolic traces can interact
 
 				# basic, convenient case: the two traces match
 				if current.addr == self._trace[current.globals['bb_cnt']]:
@@ -2331,10 +2357,10 @@
 			# drop the missed stash before stepping, since driller needs missed paths later.
 			simgr.drop(stash='missed')
 
-			simgr.step(stash=stash, size=bbl_max_bytes) 调用sim_manager.py step
+			simgr.step(stash=stash, size=bbl_max_bytes) #liu 调用sim_manager.py step
 
 			# if our input was preconstrained we have to keep on the lookout for unsat paths.
-			simgr.stash(from_stash='unsat', to_stash='active') 会将不满足的，也添加进去，因为preconstrain的问题
+			simgr.stash(from_stash='unsat', to_stash='active') #liu 会将不满足的，也添加进去，因为preconstrain的问题
 
 			simgr.drop(stash='unsat')
 
@@ -2354,8 +2380,10 @@
 			else:
 				l.debug("bb %d / %d", current.globals['bb_cnt'], len(self._trace))
 				if current.globals['bb_cnt'] < len(self._trace):
-					simgr.stash(lambda s: s.addr != self._trace[current.globals['bb_cnt']], to_stash='missed') 将新的后继不在trace中的，加入missed stash
-
+					simgr.stash(lambda s: s.addr != self._trace[current.globals['bb_cnt']], to_stash='missed') 
+					'''
+					#liu 将新的后继不在trace中的，加入missed stash
+					'''
 
 			if len(simgr.active) > 1: # rarely we get two active paths
 				simgr.prune(to_stash='missed')
