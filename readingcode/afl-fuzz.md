@@ -28,6 +28,14 @@
 	- [2.3 favored](#23-favored)
 		- [2.3.1 cull_queue](#231-cull_queue)
 		- [2.3.2 update_bitmap_score](#232-update_bitmap_score)
+- [3. Afl master slave](#3-afl-master-slave)
+	- [3.1 用法](#31-用法)
+	- [3.2 sync_dir](#32-sync_dir)
+	- [3.3 sync_fuzzers 同步其他fuzzer的queue成果](#33-sync_fuzzers-同步其他fuzzer的queue成果)
+	- [3.4 describe_op](#34-describe_op)
+	- [3.5 save_if_interesting](#35-save_if_interesting)
+	- [3.6 SYNC_INTERVAL](#36-sync_interval)
+	- [3.7 每个fuzzer都是同步的，因为不分M，S](#37-每个fuzzer都是同步的因为不分ms)
 
 <!-- /TOC -->
 # 1. bitmap 
@@ -3072,6 +3080,374 @@
 		}
 
 	}
+# 3. Afl master slave
+## 3.1 用法
+	5) If the program reads from stdin, run 'afl-fuzz' like so:
+
+	./afl-fuzz -i testcase_dir -o findings_dir -- \
+		/path/to/tested/program [...program's cmdline...]
+
+	If the program takes input from a file, you can put @@ in the program's
+	command line; AFL will put an auto-generated file name in there for you.
+
+	2) Single-system parallelization
+	--------------------------------
+
+	If you wish to parallelize a single job across multiple cores on a local
+	system, simply create a new, empty output directory ("sync dir") that will be
+	shared by all the instances of afl-fuzz; and then come up with a naming scheme
+	for every instance - say, "fuzzer01", "fuzzer02", etc. 
+
+	Run the first one ("master", -M) like this:
+
+	$ ./afl-fuzz -i testcase_dir -o sync_dir -M fuzzer01 [...other stuff...]
+
+	...and then, start up secondary (-S) instances like this:
+
+	$ ./afl-fuzz -i testcase_dir -o sync_dir -S fuzzer02 [...other stuff...]
+	$ ./afl-fuzz -i testcase_dir -o sync_dir -S fuzzer03 [...other stuff...]
+
+## 3.2 sync_dir
+	/* Validate and fix up out_dir and sync_dir when using -S. */
+
+	static void fix_up_sync(void) {
+
+	u8* x = sync_id;
+
+	if (dumb_mode)
+		FATAL("-S / -M and -n are mutually exclusive");
+
+	if (skip_deterministic) {
+
+		if (force_deterministic)
+		FATAL("use -S instead of -M -d");
+		else
+		FATAL("-S already implies -d");
+
+	}
+
+	while (*x) {
+
+		if (!isalnum(*x) && *x != '_' && *x != '-')
+		FATAL("Non-alphanumeric fuzzer ID specified via -S or -M");
+
+		x++;
+
+	}
+
+	if (strlen(sync_id) > 32) FATAL("Fuzzer ID too long");
+
+	x = alloc_printf("%s/%s", out_dir, sync_id);//liu out_dir/sync_id
+
+	sync_dir = out_dir;
+	out_dir  = x;
+
+	if (!force_deterministic) {
+		skip_deterministic = 1;
+		use_splicing = 1;
+	}
+
+	}
+
+## 3.3 sync_fuzzers 同步其他fuzzer的queue成果
+	/* Grab interesting test cases from other fuzzers. */
+
+	static void sync_fuzzers(char** argv) {
+
+	DIR* sd;
+	struct dirent* sd_ent;
+	u32 sync_cnt = 0;
+
+	sd = opendir(sync_dir);//liu 打开同步目录sync
+	if (!sd) PFATAL("Unable to open '%s'", sync_dir);
+
+	stage_max = stage_cur = 0;
+	cur_depth = 0;
+
+	/* Look at the entries created for every other fuzzer in the sync directory. */
+
+	while ((sd_ent = readdir(sd))) { //liu 读目录项
+	
+
+		static u8 stage_tmp[128];
+
+		DIR* qd;
+		struct dirent* qd_ent;
+		u8 *qd_path, *qd_synced_path;
+		u32 min_accept = 0, next_min_accept;
+
+		s32 id_fd;
+
+		/* Skip dot files and our own output directory. */
+
+		if (sd_ent->d_name[0] == '.' || !strcmp(sync_id, sd_ent->d_name)) continue; //liu 过滤掉自身
+
+		/* Skip anything that doesn't have a queue/ subdirectory. */
+
+		qd_path = alloc_printf("%s/%s/queue", sync_dir, sd_ent->d_name); //liu 获取人家的劳动成果queue路径
+
+		if (!(qd = opendir(qd_path))) {
+		ck_free(qd_path);
+		continue;
+		}
+
+		/* Retrieve the ID of the last seen test case. */
+
+		qd_synced_path = alloc_printf("%s/.synced/%s", out_dir, sd_ent->d_name); //liu 该文件记录最后同步过的id
+
+		id_fd = open(qd_synced_path, O_RDWR | O_CREAT, 0600);
+
+		if (id_fd < 0) PFATAL("Unable to create '%s'", qd_synced_path);
+
+		if (read(id_fd, &min_accept, sizeof(u32)) > 0) 
+		lseek(id_fd, 0, SEEK_SET);
+
+		next_min_accept = min_accept;
+
+		/* Show stats */    
+
+		sprintf(stage_tmp, "sync %u", ++sync_cnt);
+		stage_name = stage_tmp;
+		stage_cur  = 0;
+		stage_max  = 0;
+
+		/* For every file queued by this fuzzer, parse ID and see if we have looked at
+		it before; exec a test case if not. */
+
+		while ((qd_ent = readdir(qd))) { //liu 遍历queue中的样本
+
+		u8* path;
+		s32 fd;
+		struct stat st;
+
+		if (qd_ent->d_name[0] == '.' ||
+			sscanf(qd_ent->d_name, CASE_PREFIX "%06u", &syncing_case) != 1 || 
+			syncing_case < min_accept) continue; //liu 获取没有遍历过的样本 //liu get syncing_case
+
+		/* OK, sounds like a new one. Let's give it a try. */
+
+		if (syncing_case >= next_min_accept)
+			next_min_accept = syncing_case + 1;
+
+		path = alloc_printf("%s/%s", qd_path, qd_ent->d_name);
+
+		/* Allow this to fail in case the other fuzzer is resuming or so... */
+
+		fd = open(path, O_RDONLY);
+
+		if (fd < 0) {
+			ck_free(path);
+			continue;
+		}
+
+		if (fstat(fd, &st)) PFATAL("fstat() failed");
+
+		/* Ignore zero-sized or oversized files. */
+
+		if (st.st_size && st.st_size <= MAX_FILE) {
+
+			u8  fault;
+			u8* mem = mmap(0, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+
+			if (mem == MAP_FAILED) PFATAL("Unable to mmap '%s'", path);
+
+			/* See what happens. We rely on save_if_interesting() to catch major
+			errors and save the test case. */
+
+			write_to_testcase(mem, st.st_size); //liu 写入输入文件（detect_file_args中赋值为.cur_input）
+
+			fault = run_target(argv, exec_tmout);//liu 执行
+
+			if (stop_soon) return;
+
+			syncing_party = sd_ent->d_name;//liu syncing_party from which fuzz slave
+			queued_imported += save_if_interesting(argv, mem, st.st_size, fault); //liu 如果好的话，导入到自己的queue
+			syncing_party = 0;
+
+			munmap(mem, st.st_size);
+
+			if (!(stage_cur++ % stats_update_freq)) show_stats();
+
+		}
+
+		ck_free(path);
+		close(fd);
+
+		}
+
+		ck_write(id_fd, &next_min_accept, sizeof(u32), qd_synced_path); //liu update the syn count into file
+
+		close(id_fd);
+		closedir(qd);
+		ck_free(qd_path);
+		ck_free(qd_synced_path);
+		
+	}  
+
+	closedir(sd);
+
+	}
+
+## 3.4 describe_op
+	/* Construct a file name for a new test case, capturing the operation
+	that led to its discovery. Uses a static buffer. */
+
+	static u8* describe_op(u8 hnb) {
+
+	static u8 ret[256];
+
+	if (syncing_party) {//liu assigned in sync_fuzzers
+
+		sprintf(ret, "sync:%s,src:%06u", syncing_party, syncing_case);
+
+	} else {
+
+		sprintf(ret, "src:%06u", current_entry);
+
+		if (splicing_with >= 0)
+		sprintf(ret + strlen(ret), "+%06u", splicing_with);
+
+		sprintf(ret + strlen(ret), ",op:%s", stage_short);
+
+		if (stage_cur_byte >= 0) {
+
+		sprintf(ret + strlen(ret), ",pos:%u", stage_cur_byte);
+
+		if (stage_val_type != STAGE_VAL_NONE)
+			sprintf(ret + strlen(ret), ",val:%s%+d", 
+					(stage_val_type == STAGE_VAL_BE) ? "be:" : "",
+					stage_cur_val);
+
+		} else sprintf(ret + strlen(ret), ",rep:%u", stage_cur_val);
+
+	}
+
+	if (hnb == 2) strcat(ret, ",+cov");//liu 
+
+	return ret;
+
+	}
+## 3.5 save_if_interesting
+	/home/l/Downloads/afl/config.h:
+	211  /* Uncomment to use simple file names (id_NNNNNN): */
+	212  
+	213: // #define SIMPLE_FILES
+	static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
+
+	u8  *fn = "";
+	u8  hnb;
+	s32 fd;
+	u8  keeping = 0, res;
+
+	if (fault == crash_mode) {
+
+		/* Keep only if there are new bits in the map, add to queue for
+		future fuzzing, etc. */
+
+		if (!(hnb = has_new_bits(virgin_bits))) {
+		if (crash_mode) total_crashes++;
+		return 0;
+		}    
+
+	#ifndef SIMPLE_FILES
+
+		fn = alloc_printf("%s/queue/id:%06u,%s", out_dir, queued_paths,
+						describe_op(hnb)); //liu call describe_op
+
+	#else
+
+		fn = alloc_printf("%s/queue/id_%06u", out_dir, queued_paths);
+
+	#endif /* ^!SIMPLE_FILES */
+
+	add_to_queue(fn, len, 0);
+
+## 3.6 SYNC_INTERVAL
+	/home/long/afl-2.35b/config.h:
+	198  /* Sync interval (every n havoc cycles): */
+	199  
+	200: #define SYNC_INTERVAL       5
+	Main函数
+	while (1) {
+
+		u8 skipped_fuzz;
+
+		cull_queue();
+
+		if (!queue_cur) {
+
+		queue_cycle++;
+		current_entry     = 0;
+		cur_skipped_paths = 0;
+		queue_cur         = queue;
+
+		while (seek_to) {
+			current_entry++;
+			seek_to--;
+			queue_cur = queue_cur->next;
+		}
+
+		show_stats();
+
+		if (not_on_tty) {
+			ACTF("Entering queue cycle %llu.", queue_cycle);
+			fflush(stdout);
+		}
+
+		/* If we had a full queue cycle with no new finds, try
+			recombination strategies next. */
+
+		if (queued_paths == prev_queued) {
+
+			if (use_splicing) cycles_wo_finds++; else use_splicing = 1;
+
+		} else cycles_wo_finds = 0;
+
+		prev_queued = queued_paths;
+
+		if (sync_id && queue_cycle == 1 && getenv("AFL_IMPORT_FIRST"))
+			sync_fuzzers(use_argv);
+
+		}
+
+		skipped_fuzz = fuzz_one(use_argv);
+
+		if (!stop_soon && sync_id && !skipped_fuzz) {
+		
+		if (!(sync_interval_cnt++ % SYNC_INTERVAL))
+			sync_fuzzers(use_argv); //liu call sync_fuzzers
+
+	}
+## 3.7 每个fuzzer都是同步的，因为不分M，S
+	case 'M': { /* master sync ID */
+
+		u8* c;
+
+		if (sync_id) FATAL("Multiple -S or -M options not supported");
+		sync_id = ck_strdup(optarg);
+
+		if ((c = strchr(sync_id, ':'))) {
+
+		*c = 0;
+
+		if (sscanf(c + 1, "%u/%u", &master_id, &master_max) != 2 ||
+			!master_id || !master_max || master_id > master_max ||
+			master_max > 1000000) FATAL("Bogus master ID passed to -M");
+
+		}
+
+		force_deterministic = 1;
+
+	}
+
+	break;
+
+	case 'S': 
+
+	if (sync_id) FATAL("Multiple -S or -M options not supported");
+	sync_id = optarg;
+	break;
+
 #
 
 
