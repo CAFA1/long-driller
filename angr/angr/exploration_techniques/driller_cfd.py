@@ -9,7 +9,7 @@ l = logging.getLogger("angr.exploration_techniques.driller_core")
 #long
 l.setLevel(logging.DEBUG)
 
-class DrillerCore(ExplorationTechnique):
+class DrillerCFD(ExplorationTechnique):
     """
     An exploration technique that symbolically follows an input looking for new
     state transitions.
@@ -24,7 +24,7 @@ class DrillerCore(ExplorationTechnique):
         :param fuzz_bitmap: AFL's bitmap of state transitions. Defaults to saying every transition is worth satisfying.
         """
 
-        super(DrillerCore, self).__init__()
+        super(DrillerCFD, self).__init__()
         self.trace = trace
         self.fuzz_bitmap = fuzz_bitmap or "\xff" * 65536
 

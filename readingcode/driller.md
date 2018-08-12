@@ -1,4 +1,4 @@
-
+'''
 <!-- TOC -->
 
 - [28. driller](#28-driller)
@@ -93,6 +93,7 @@
 		- [34.2.2 use_technique(Explorer<-explore](#3422-use_techniqueexplorer-explore)
 
 <!-- /TOC -->
+'''
 # 28. driller
 	https://blog.csdn.net/chen_zju/article/details/80791281
 	安装使用
@@ -174,7 +175,7 @@
 			if self.redis:
 				self.redis.sadd(self.identifier + '-traced', self.input)
 
-			list(self._drill_input())
+			list(self._drill_input())//liu call _drill_input
 
 			if self.redis:
 				return len(self._generated)
@@ -3381,3 +3382,4 @@
 	goto = self.filter(state, filter_func)
 	保存过滤出来的find的stash  
 
+#
