@@ -106,6 +106,7 @@
 	# perform symbolic-assisted fuzzing with 4 AFL cores and 2 symbolic tracing (drilling) cores.
 	shellphuzz -i -c 4 -d 2 /path/to/binary
 ## 28.1 driller.Driller
+```python
 	d = driller.Driller(os.path.join(bin_location, binary), "AAAA", "\xff"*65535, "whatever~")
 
 	class Driller(object):
@@ -156,6 +157,7 @@
 				resource.setrlimit(resource.RLIMIT_AS, (config.MEM_LIMIT, config.MEM_LIMIT))
 
 			l.debug("[%s] drilling started on %s.", self.identifier, time.ctime(self.start_time))
+```
 ## 28.2 d.drill()
 	new_inputs = d.drill()
 	#liu driller_main.py
