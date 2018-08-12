@@ -146,9 +146,9 @@
 			self.start_time = time.time()
 
 			# Set of all the generated inputs.
-			'''
+			```
 			#liu
-			'''
+			```
 			self._generated = set()
 
 			# Set the memory limit specified in the config.
