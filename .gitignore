@@ -1,9 +1,8 @@
 .idea/*
-shellphish-afl/*
+shellphish-afl/
 binaries/
 archinfo/
 cle/
-archinfo/
 celery/
 shellphish-qemu/
 test/control_flow/control_dependency
