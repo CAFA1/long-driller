@@ -16,6 +16,7 @@ import logging.config
 import multiprocessing
 import time
 if __name__ == "__main__":
+	#long cmd: python driller_explore.py -d 1 data_flow
 	parser = argparse.ArgumentParser(description="Driller explore interface")
 	parser.add_argument('binary', help="the path to the target binary to fuzz")
 

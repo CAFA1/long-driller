@@ -1528,9 +1528,8 @@ main, pydevd.py:1658
 ```
 ## 31.1 sim_manager.py step 主要是分类可解不可解
 ```python
-@ImmutabilityMixin.immutable
-def step(self, n=None, selector_func=None, step_func=None, stash='active', 默认从active的state执行
-			successor_func=None, until=None, filter_func=None, **run_args):
+def step(self, n=None, selector_func=None, step_func=None, stash='active', 
+			successor_func=None, until=None, filter_func=None, **run_args):#liu 默认从active的state执行
 	"""
 	Step a stash of states forward and categorize the successors appropriately.
 
@@ -1582,7 +1581,7 @@ def step(self, n=None, selector_func=None, step_func=None, stash='active', 默�
 	# ------------------ Compatibility layer ---------------->8
 	bucket = defaultdict(list)
 
-	for state in self._fetch_states(stash=stash): 获取该stash的状态,每一个状态都要执行
+	for state in self._fetch_states(stash=stash): #liu 获取该stash(active)的状态,每一个状态都要执行
 
 		goto = self.filter(state, filter_func)
 		if isinstance(goto, tuple):
@@ -2480,10 +2479,8 @@ def step(self, simgr, stash='active', **kwargs):
 		else:
 			l.debug("bb %d / %d", current.globals['bb_cnt'], len(self._trace))
 			if current.globals['bb_cnt'] < len(self._trace):
-				simgr.stash(lambda s: s.addr != self._trace[current.globals['bb_cnt']], to_stash='missed') 
-				'''
-				#liu 将新的后继不在trace中的，加入missed stash
-				'''
+				simgr.stash(lambda s: s.addr != self._trace[current.globals['bb_cnt']], to_stash='missed') #liu 将新的后继不在trace中的，加入missed stash
+			
 
 		if len(simgr.active) > 1: # rarely we get two active paths
 			simgr.prune(to_stash='missed')
@@ -2529,7 +2526,7 @@ def step(self, simgr, stash='active', **kwargs):
 ## 31.4 driller_core.py step -> tracer.py step
 ```python
 def step(self, simgr, stash='active', **kwargs):
-	simgr.step(stash=stash, **kwargs) 调用 tracer.py step
+	simgr.step(stash=stash, **kwargs) #liu 调用 tracer.py step
 
 	# Mimic AFL's indexing scheme.
 	if 'missed' in simgr.stashes and simgr.missed: #在tracer.py step中发现了missed的话
