@@ -41,6 +41,7 @@
 	- [30.2 listen.py <- start_listener 不是](#302-listenpy---start_listener-不是)
 	- [30.3 问题是afl的同步](#303-问题是afl的同步)
 - [31. step](#31-step)
+	- [31.0 _drill_input](#310-_drill_input)
 	- [31.1 sim_manager.py step 主要是分类可解不可解](#311-sim_managerpy-step-主要是分类可解不可解)
 		- [31.1.1 step_state <- step执行一步](#3111-step_state---step执行一步)
 		- [31.1.2 sim_manager.py successors <- step_state](#3112-sim_managerpy-successors---step_state)
@@ -211,7 +212,7 @@ def _drill_input(self):
 	else:
 		s = p.factory.full_init_state(stdin=angr.storage.file.SimFileStream)
 
-	s.preconstrainer.preconstrain_file(self.input, s.posix.stdin, True) 是对标准输入文件做的
+	s.preconstrainer.preconstrain_file(self.input, s.posix.stdin, True) #liu add_constraints是对标准输入文件做的
 
 	simgr = p.factory.simgr(s, save_unsat=True, hierarchy=False, save_unconstrained=r.crash_mode)
 
@@ -1441,8 +1442,8 @@ static void sync_fuzzers(char** argv) {
 }
 ```
 # 31. step
+## 31.0 _drill_input
 ```python
-发起者
 def _drill_input(self):
 	"""
 	Symbolically step down a path with a tracer, trying to concretize inputs for unencountered
@@ -2525,6 +2526,7 @@ def step(self, simgr, stash='active', **kwargs):
 ```
 ## 31.4 driller_core.py step -> tracer.py step
 ```python
+#_drill_input() call it
 def step(self, simgr, stash='active', **kwargs):
 	simgr.step(stash=stash, **kwargs) #liu 调用 tracer.py step
 

@@ -125,8 +125,8 @@ if __name__ == "__main__":
         logging.config.fileConfig(logcfg_file)
 
     binary_path, fuzzer_out_dir, bitmap_path, path_to_input_to_drill = sys.argv[1:5]
-
-    fuzzer_bitmap = open(args.bitmap_path, "r").read()
+    #long origin is string, now change to list
+    fuzzer_bitmap = list(open(args.bitmap_path, "r").read())
 
     # create a folder
     driller_dir = os.path.join(args.fuzzer_out_dir, "driller")
@@ -153,7 +153,7 @@ if __name__ == "__main__":
             #fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
             #filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             #filepath = os.path.join(driller_queue_dir, filepath)
-            #long
+            #long write file
             fuzzer_from = os.path.basename(args.path_to_input_to_drill).split('id:')[1].split(',')[0]
             filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             filepath = os.path.join(driller_queue_dir, filepath)

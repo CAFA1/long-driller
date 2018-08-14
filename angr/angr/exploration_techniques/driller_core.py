@@ -57,7 +57,18 @@ class DrillerCore(ExplorationTechnique):
             simgr.step()
             if  len(simgr.active)>0:
                 this_addr=simgr.one_active.addr
-                if (len(simgr._stashes['active']) > 1 or (prev_addr,this_addr) not in self.encounters):
+                prev_loc = prev_addr
+                prev_loc = (prev_loc >> 4) ^ (prev_loc << 8)
+                prev_loc &= len(self.fuzz_bitmap) - 1
+                prev_loc = prev_loc >> 1
+                cur_loc = this_addr
+                cur_loc = (cur_loc >> 4) ^ (cur_loc << 8)
+                cur_loc &= len(self.fuzz_bitmap) - 1
+                hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
+                if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
+                    self.encounters.add((prev_addr,this_addr))
+                    self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
+                    l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
                     return 1
                 steps += 1
                 l.warning(hex(steps))
@@ -90,12 +101,9 @@ class DrillerCore(ExplorationTechnique):
                 l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
                 #long disable encounters
                 #if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
-                if not hit and not self._has_false(state) and mapped_to != 'cle##externs':
+                if not self._has_false(state) and mapped_to != 'cle##externs':
                     diverted_flag=0
-                    if transition  in self.encounters:
-                    
-
-
+                    if transition  in self.encounters or hit:
                         state1 = state.copy()
                         state1.preconstrainer.remove_preconstraints()
                         if(self.check_BR(state1)):
@@ -112,8 +120,8 @@ class DrillerCore(ExplorationTechnique):
                             l.debug("Found a completely new transition, putting into 'diverted' stash.")
                             simgr.stashes['diverted'].append(state)
                             self.encounters.add(transition)
-                            #long write to bitmap
-
+                            #long update bitmap
+                            self.fuzz_bitmap[cur_loc ^ prev_loc]=chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc])&~1)
 
                         else:
                             l.debug("State at %#x is not satisfiable.", transition[1])

@@ -126,7 +126,8 @@ class Driller(object):
 
         t = angr.exploration_techniques.Tracer(trace=r.trace)
         c = angr.exploration_techniques.CrashMonitor(trace=r.trace, crash_addr=r.crash_addr)
-        self._core = angr.exploration_techniques.DrillerCore(trace=r.trace)
+        #long origin no bitmap, now add bitmap parameter
+        self._core = angr.exploration_techniques.DrillerCore(trace=r.trace,fuzz_bitmap=self.fuzz_bitmap)
 
         if r.crash_mode:
             simgr.use_technique(c)
@@ -159,6 +160,11 @@ class Driller(object):
                 #long disable
                 #for i in self._symbolic_explorer_stub(state):
                 #    yield i
+        #long write bitmap
+        file_bit_map=open('/dev/shm/work/'+self.identifier+'/driller/queue/bitmap','w')
+        file_bit_map.write(''.join(self.fuzz_bitmap))
+        file_bit_map.close()
+        l.warning('write bitmap: '+'/dev/shm/work/'+self.identifier+'/driller/queue/bitmap')
 
         
 
