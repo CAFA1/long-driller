@@ -329,7 +329,7 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         # ------------------ Compatibility layer ---------------->8
         bucket = defaultdict(list)
         #long sim_manager.py step
-        debug_flag=0
+        debug_flag=1
         for state in self._fetch_states(stash=stash):
 
             goto = self.filter(state, filter_func)
@@ -356,7 +356,7 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
                     for state1 in successor_states:
                         mystash=to_stash or stash
                         if mystash=='active':
-                            print hex(state.addr)+' --> '+hex(state1.addr)
+                            l.warning(hex(state.addr)+' --> '+hex(state1.addr))
 
         self._clear_states(stash=stash)
         for to_stash, states in bucket.iteritems():

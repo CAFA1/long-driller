@@ -192,62 +192,62 @@ def drill(self):
 list(self._drill_input())
 #liu in driller_main.py
 def _drill_input(self):
-		"""
-		Symbolically step down a path with a tracer, trying to concretize inputs for unencountered
-		state transitions.
-		"""
+	"""
+	Symbolically step down a path with a tracer, trying to concretize inputs for unencountered
+	state transitions.
+	"""
 
-		# initialize the tracer
-		r = tracer.qemu_runner.QEMURunner(self.binary, self.input, argv=self.argv) 注意这里有输入
-		p = angr.Project(self.binary)
-		for addr, proc in self._hooks.items():
-			p.hook(addr, proc)
-			l.debug("Hooking %#x -> %s...", addr, proc.display_name)
+	# initialize the tracer
+	r = tracer.qemu_runner.QEMURunner(self.binary, self.input, argv=self.argv) 注意这里有输入
+	p = angr.Project(self.binary)
+	for addr, proc in self._hooks.items():
+		p.hook(addr, proc)
+		l.debug("Hooking %#x -> %s...", addr, proc.display_name)
 
-		if p.loader.main_object.os == 'cgc':
-			p.simos.syscall_library.update(angr.SIM_LIBRARIES['cgcabi_tracer'])
+	if p.loader.main_object.os == 'cgc':
+		p.simos.syscall_library.update(angr.SIM_LIBRARIES['cgcabi_tracer'])
 
-			s = p.factory.entry_state(stdin=angr.storage.file.SimFileStream, flag_page=r.magic)
-		else:
-			s = p.factory.full_init_state(stdin=angr.storage.file.SimFileStream)
+		s = p.factory.entry_state(stdin=angr.storage.file.SimFileStream, flag_page=r.magic)
+	else:
+		s = p.factory.full_init_state(stdin=angr.storage.file.SimFileStream)
 
-		s.preconstrainer.preconstrain_file(self.input, s.posix.stdin, True) 是对标准输入文件做的
+	s.preconstrainer.preconstrain_file(self.input, s.posix.stdin, True) 是对标准输入文件做的
 
-		simgr = p.factory.simgr(s, save_unsat=True, hierarchy=False, save_unconstrained=r.crash_mode)
+	simgr = p.factory.simgr(s, save_unsat=True, hierarchy=False, save_unconstrained=r.crash_mode)
 
-		t = angr.exploration_techniques.Tracer(trace=r.trace)
-		c = angr.exploration_techniques.CrashMonitor(trace=r.trace, crash_addr=r.crash_addr)
-		self._core = angr.exploration_techniques.DrillerCore(trace=r.trace)
+	t = angr.exploration_techniques.Tracer(trace=r.trace)
+	c = angr.exploration_techniques.CrashMonitor(trace=r.trace, crash_addr=r.crash_addr)
+	self._core = angr.exploration_techniques.DrillerCore(trace=r.trace)
 
-		if r.crash_mode:
-			simgr.use_technique(c)
-		simgr.use_technique(t)
-		simgr.use_technique(angr.exploration_techniques.Oppologist())
-		simgr.use_technique(self._core)
+	if r.crash_mode:
+		simgr.use_technique(c)
+	simgr.use_technique(t)
+	simgr.use_technique(angr.exploration_techniques.Oppologist())
+	simgr.use_technique(self._core)
 
-		self._set_concretizations(simgr.one_active) 
+	self._set_concretizations(simgr.one_active) 
 
-		l.debug("Drilling into %r.", self.input)
-		l.debug("Input is %r.", self.input)
+	l.debug("Drilling into %r.", self.input)
+	l.debug("Input is %r.", self.input)
 
-		while simgr.active and simgr.one_active.globals['bb_cnt'] < len(r.trace):
-			simgr.step() #liu 见31.4
+	while simgr.active and simgr.one_active.globals['bb_cnt'] < len(r.trace):
+		simgr.step() #liu 见31.4
 
-			# Check here to see if a crash has been found.
-			if self.redis and self.redis.sismember(self.identifier + '-finished', True):
-				return
+		# Check here to see if a crash has been found.
+		if self.redis and self.redis.sismember(self.identifier + '-finished', True):
+			return
 
-			if 'diverted' not in simgr.stashes: #liu in step(31.4) find the 'diverted' state
-				continue
-			#http://angr.io/api-doc/angr.html
-			while simgr.diverted:#liu make new sample for the diverted state at each step
-				state = simgr.diverted.pop(0)
-				l.debug("Found a diverted state, exploring to some extent.")
-				w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample
-				if w is not None:
-					yield w
-				for i in self._symbolic_explorer_stub(state):
-					yield i
+		if 'diverted' not in simgr.stashes: #liu in step(31.4) find the 'diverted' state
+			continue
+		#http://angr.io/api-doc/angr.html
+		while simgr.diverted:#liu make new sample for the diverted state at each step
+			state = simgr.diverted.pop(0)
+			l.debug("Found a diverted state, exploring to some extent.")
+			w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample
+			if w is not None:
+				yield w
+			for i in self._symbolic_explorer_stub(state):
+				yield i
 ```
 ### 28.3.1 tracer实验（no）
 	r = tracer.qemu_runner.QEMURunner(self.binary, self.input, argv=self.argv)
@@ -3348,13 +3348,13 @@ import angr
 def main():
 	p = angr.Project("fake", auto_load_libs=False)
 
-state = p.factory.blank_state(addr=0x4004AC) #入口状态，起始状态
+	state = p.factory.blank_state(addr=0x4004AC) #入口状态，起始状态
 
 	inp = state.solver.BVS('inp', 8*8) #符号值定义
 	state.regs.rax = inp #引入符号值到rax（污点引入）
 
 	simgr= p.factory.simulation_manager(state)
-simgr.explore(find=0x400684) #开始遍历，找到路径（路径遍历）
+	simgr.explore(find=0x400684) #开始遍历，找到路径（路径遍历）
 
 	found = simgr.found[0] #找到的状态
 

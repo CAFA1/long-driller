@@ -238,14 +238,16 @@ class Blade(object):
             self._dst_stmt_idx = len(stmts) - 1
 
             prev = (self._get_addr(self._dst_run), 'default')
-
+        #long debug
+        aa=self._get_irsb(self._dst_run)
+        #long  self._get_irsb(self._dst_run)._addr change to  self._get_irsb(self._dst_run).addr
         slicer = SimSlicer(self.project.arch, stmts,
                            target_tmps=temps,
                            target_regs=regs,
                            target_stack_offsets=None,
                            inslice_callback=self._inslice_callback,
                            inslice_callback_infodict={
-                               'irsb_addr':  self._get_irsb(self._dst_run)._addr,
+                               'irsb_addr':  self._get_irsb(self._dst_run).addr,
                                'prev': prev,
                            })
         regs = slicer.final_regs

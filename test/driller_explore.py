@@ -1,65 +1,69 @@
+#driller offline 
+#!/usr/bin/env python
+
 import os
 import sys
-import nose
-import logging
-
-import angr
+import imp
+import time
+import fuzzer
+import shutil
+import socket
 import driller
-
-
-l = logging.getLogger("driller.driller")
-
-
-bin_location = str(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../binaries'))
-
-
-def test_vul(binary):
-    """
-    Test drilling on the cgc binary, palindrome.
-    """
-
-    #binary = "./vul"
-
-    # fuzzbitmap says every transition is worth satisfying.
-    d = driller.Driller(binary, "A"*120, "\xff"*65535, "whatever~")
-
-    new_inputs = d.drill()
-    i=0
-    for tmp_input in new_inputs:
-        print '\ninput '+str(i)+': '+repr(tmp_input)+'\n'
-        # log the driller sample into the file(number.input)
-        file_tmp=open(str(i)+'.input','w')
-        file_tmp.write(tmp_input[1])
-        file_tmp.close()
-        i=i+1
-    #nose.tools.assert_equal(len(new_inputs), 7)
-
-    # Make sure driller produced a new input which hits the easter egg.
-    #nose.tools.assert_true(any(filter(lambda x: x[1].startswith('^'), new_inputs)))
-
-
-def test_simproc_drilling():
-    """
-    Test drilling on the cgc binary palindrome with simprocedures.
-    """
-
-    binary = "tests/i386/driller_simproc"
-    memcmp = angr.SIM_PROCEDURES['libc']['memcmp']()
-    simprocs = {0x8048200: memcmp}
-
-    # fuzzbitmap says every transition is worth satisfying.
-    d = driller.Driller(os.path.join(bin_location, binary), "A"*0x80, "\xff"*65535, "whatever~", hooks=simprocs)
-
-    new_inputs = d.drill()
-
-    # Make sure driller produced a new input which satisfies the memcmp.
-    password = "the_secret_password_is_here_you_will_never_guess_it_especially_since_it_is_going_to_be_made_lower_case"
-    nose.tools.assert_true(any(filter(lambda x: x[1].startswith(password), new_inputs)))
-
-
-
-
+import tarfile
+import argparse
+import importlib
+import logging.config
+import multiprocessing
+import time
 if __name__ == "__main__":
-    l.setLevel('DEBUG')
-    binary=sys.argv[1]
-    test_vul(binary)
+	#long cmd: python driller_explore.py -d 1 data_flow
+	parser = argparse.ArgumentParser(description="Driller explore interface")
+	parser.add_argument('binary', help="the path to the target binary to fuzz")
+
+	parser.add_argument('-C', '--first-crash', help="Stop on the first crash.", action='store_true', default=False)
+
+	parser.add_argument('--run-timeout', help="Number of seconds permitted for each run of binary", type=int)
+	parser.add_argument('--driller-timeout', help="Number of seconds to allow driller to run", type=int, default=10*60)
+	parser.add_argument('--length-extension', help="Try extending inputs to driller by this many bytes", type=int)
+	parser.add_argument('-d', '--driller_workers', help="When the fuzzer gets stuck, drill with N workers.", type=int)
+	
+	args = parser.parse_args()
+
+
+	try: os.system("mkdir -p /dev/shm/work/"+os.path.basename(args.binary)+'/driller/queue')
+	except:
+		pass
+
+	queue_dir="/dev/shm/work/"+os.path.basename(args.binary)+'/driller/queue/'
+	os.system("echo fuzz > "+queue_dir+'id:0')
+	bitmap=open(queue_dir+'bitmap','w')
+	bitmap.write("\xff"*65535)
+	bitmap.close()
+
+	queue = filter(lambda x: x != "bitmap" and x!='driller', os.listdir(queue_dir))
+	#print queue
+	already_drilled_inputs=set()
+	num_workers = args.driller_workers
+	running_workers=[]
+	#drill_extension = driller.LocalCallback(num_workers, worker_timeout=args.driller_timeout, length_extension=args.length_extension)
+	while len(queue):
+		time.sleep(2)
+		queue = filter(lambda x: x != "bitmap" and x!='driller', os.listdir(queue_dir))
+		not_drilled = set(queue) - already_drilled_inputs
+		#print not_drilled
+		if len(not_drilled) == 0:
+			print "n",
+		running_workers = [x for x in running_workers if x.is_alive()]
+		while len(running_workers) < num_workers and len(not_drilled) > 0:
+			#print '3'
+			time.sleep(2)
+			running_workers = [x for x in running_workers if x.is_alive()]
+			to_drill_path = list(not_drilled)[0]
+			not_drilled.remove(to_drill_path)
+			already_drilled_inputs.add(to_drill_path)
+			print to_drill_path
+			proc = multiprocessing.Process(target=driller.local_callback._run_drill_long, args=(args.binary,args.driller_timeout, queue_dir, queue_dir+ to_drill_path),
+					kwargs={'length_extension': args.length_extension})
+			proc.start()
+			running_workers.append(proc)
+	

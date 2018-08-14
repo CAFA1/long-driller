@@ -160,6 +160,8 @@ class Driller(object):
                 #for i in self._symbolic_explorer_stub(state):
                 #    yield i
 
+        
+
 ### EXPLORER
 
     def _symbolic_explorer_stub(self, state):

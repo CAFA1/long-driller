@@ -1,6 +1,6 @@
 import logging
 from itertools import islice, izip
-
+import angr
 
 from . import ExplorationTechnique
 
@@ -40,6 +40,30 @@ class DrillerCore(ExplorationTechnique):
 
     def complete(self, simgr):
         return not simgr.active or simgr.one_active.globals['bb_cnt'] >= len(self.trace)
+    #long
+    def check_BR(self, state):
+        # Create a new simulation manager and step it forward up to 1024
+        # accumulated active states or steps.
+        steps = 0
+        accumulated = 1
+
+        p = angr.Project(self.project.filename)
+        simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
+
+        l.warning("start check_BR at "+hex(state.addr))
+        l.warning(hex(len(simgr.active)))
+        while len(simgr.active) and steps < 2:
+            prev_addr=simgr.one_active.addr
+            simgr.step()
+            if  len(simgr.active)>0:
+                this_addr=simgr.one_active.addr
+                if (len(simgr._stashes['active']) > 1 or (prev_addr,this_addr) not in self.encounters):
+                    return 1
+                steps += 1
+                l.warning(hex(steps))
+
+
+        return 0
 
     def step(self, simgr, stash='active', **kwargs):
         simgr.step(stash=stash, **kwargs)
@@ -65,20 +89,36 @@ class DrillerCore(ExplorationTechnique):
 
                 l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
                 #long disable encounters
-                if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
-                #if not hit and not self._has_false(state) and mapped_to != 'cle##externs':
-                    state.preconstrainer.remove_preconstraints()
+                #if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
+                if not hit and not self._has_false(state) and mapped_to != 'cle##externs':
+                    diverted_flag=0
+                    if transition  in self.encounters:
+                    
 
-                    if state.satisfiable():
-                        # A completely new state transition.
-                        l.debug("Found a completely new transition, putting into 'diverted' stash.")
-                        simgr.stashes['diverted'].append(state)
-                        self.encounters.add(transition)
-                        #long write to bitmap
-                        
 
+                        state1 = state.copy()
+                        state1.preconstrainer.remove_preconstraints()
+                        if(self.check_BR(state1)):
+                            l.warning('return 1')
+                            l.warning(hex(state.addr))
+                            diverted_flag=1
                     else:
-                        l.debug("State at %#x is not satisfiable.", transition[1])
+                        diverted_flag=1
+                    if(diverted_flag==1):
+                        state.preconstrainer.remove_preconstraints()
+
+                        if state.satisfiable():
+                            # A completely new state transition.
+                            l.debug("Found a completely new transition, putting into 'diverted' stash.")
+                            simgr.stashes['diverted'].append(state)
+                            self.encounters.add(transition)
+                            #long write to bitmap
+
+
+                        else:
+                            l.debug("State at %#x is not satisfiable.", transition[1])
+                    else:
+                        l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
 
                 elif self._has_false(state):
                     l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
