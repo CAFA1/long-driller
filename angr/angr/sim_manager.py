@@ -329,7 +329,7 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         # ------------------ Compatibility layer ---------------->8
         bucket = defaultdict(list)
         #long sim_manager.py step
-        debug_flag=1
+        debug_flag=0
         for state in self._fetch_states(stash=stash):
 
             goto = self.filter(state, filter_func)

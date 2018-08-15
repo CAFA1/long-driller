@@ -12,7 +12,7 @@ from . import config
 
 
 l = logging.getLogger("driller.driller")
-
+l.setLevel(logging.DEBUG)
 
 class Driller(object):
     """
@@ -161,11 +161,12 @@ class Driller(object):
                 #for i in self._symbolic_explorer_stub(state):
                 #    yield i
         #long write bitmap
+        '''
         file_bit_map=open('/dev/shm/work/'+self.identifier+'/driller/queue/bitmap','w')
         file_bit_map.write(''.join(self.fuzz_bitmap))
         file_bit_map.close()
         l.warning('write bitmap: '+'/dev/shm/work/'+self.identifier+'/driller/queue/bitmap')
-
+        '''
         
 
 ### EXPLORER
@@ -273,6 +274,8 @@ class Driller(object):
 
         else:
             l.debug("Generated: %s", generated.encode('hex'))
+            #long
+            l.debug("Generated: %s", repr(generated))
 
         return (key, generated)
 

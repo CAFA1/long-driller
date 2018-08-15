@@ -18,8 +18,6 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
     _bitmap_path = os.path.join(_fuzzer_out_dir, 'fuzzer-master', "fuzz_bitmap")
     _timeout = drill._worker_timeout
     #long
-    print "starting drilling of ", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill)
-    os.system('cat '+_path_to_input_to_drill)
     l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
     args = (
         "timeout", "-k", str(_timeout+10), str(_timeout),
@@ -38,8 +36,7 @@ def _run_drill_long(_binary_path,_timeout, queue_dir, _path_to_input_to_drill, l
     _bitmap_path = os.path.join(_fuzzer_out_dir,  "bitmap")
     #_timeout = drill._worker_timeout
     #long
-    print "starting drilling of ", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill)
-    os.system('cat '+_path_to_input_to_drill)
+    
     l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
     args = (
         "timeout", "-k", str(_timeout+10), str(_timeout),
@@ -125,14 +122,14 @@ if __name__ == "__main__":
         logging.config.fileConfig(logcfg_file)
 
     binary_path, fuzzer_out_dir, bitmap_path, path_to_input_to_drill = sys.argv[1:5]
-    #long origin is string, now change to list
+    #long bitmap origin is string, now change to list
     fuzzer_bitmap = list(open(args.bitmap_path, "r").read())
 
     # create a folder
     driller_dir = os.path.join(args.fuzzer_out_dir, "driller")
     driller_queue_dir = os.path.join(driller_dir, "queue")
     #long
-    driller_queue_dir=args.fuzzer_out_dir
+    #driller_queue_dir=args.fuzzer_out_dir
 
     try: os.mkdir(driller_dir)
     except OSError: pass
@@ -150,13 +147,13 @@ if __name__ == "__main__":
         count = 0
         for new_input in d.drill_generator():
             id_num = len(os.listdir(driller_queue_dir))
-            #fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
-            #filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
-            #filepath = os.path.join(driller_queue_dir, filepath)
-            #long write file
-            fuzzer_from = os.path.basename(args.path_to_input_to_drill).split('id:')[1].split(',')[0]
+            fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
             filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
             filepath = os.path.join(driller_queue_dir, filepath)
+            #long write file
+            #fuzzer_from = os.path.basename(args.path_to_input_to_drill).split('id:')[1].split(',')[0]
+            #filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
+            #filepath = os.path.join(driller_queue_dir, filepath)
             #long 
             debug_flag=1
             if debug_flag:
