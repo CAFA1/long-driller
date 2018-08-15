@@ -12,12 +12,12 @@ int main(int argc, char*argv[])
 {
 	char x[100];
 	read(0,x,100);
-	if(check(x,"pwd\n")==1)
+	if(check(x,"pwd")==1)
 		printf("pwd cmd\n");
 	else
 		printf("no pwd cmd\n");
-	if(check(x,"cwd\n")==1)
-		printf("cwd cmd\n");
+	if(check(x,"dir")==1)
+		printf("dir cmd\n");
 	else
-		printf("no cwd cmd\n");
+		printf("no dir cmd\n");
 }
