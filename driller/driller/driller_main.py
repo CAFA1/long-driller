@@ -12,7 +12,7 @@ from . import config
 
 
 l = logging.getLogger("driller.driller")
-
+l.setLevel(logging.DEBUG)
 
 class Driller(object):
     """
@@ -155,8 +155,8 @@ class Driller(object):
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
                     yield w
-                #for i in self._symbolic_explorer_stub(state):
-                #    yield i
+                for i in self._symbolic_explorer_stub(state):
+                    yield i
 
 ### EXPLORER
 
@@ -259,7 +259,9 @@ class Driller(object):
             self.redis.publish(channel, pickle.dumps({'meta': key, 'data': generated, "tag": self.tag}))
 
         else:
+            #long
             l.debug("Generated: %s", generated.encode('hex'))
+            l.debug("Generated: %s", repr(generated))
 
         return (key, generated)
 

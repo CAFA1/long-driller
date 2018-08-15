@@ -3,10 +3,10 @@
 #include <string.h>
 int check(char*x,char*y)
 {
-	if(!strcmp(x,y))
-		return 1;
-	else
+	if(strcmp(x,y))
 		return 0;
+	else
+		return 1;
 }
 int main(int argc, char*argv[])
 {
@@ -16,8 +16,8 @@ int main(int argc, char*argv[])
 		printf("pwd cmd\n");
 	else
 		printf("no pwd cmd\n");
-	if(check(x,"cwd")==1)
-		printf("cwd cmd\n");
+	if(check(x,"dir")==1)
+		printf("dir cmd\n");
 	else
-		printf("no cwd cmd\n");
+		printf("no dir cmd\n");
 }
