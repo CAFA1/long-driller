@@ -158,8 +158,8 @@ class Driller(object):
                 if w is not None:
                     yield w
                 #long disable
-                #for i in self._symbolic_explorer_stub(state):
-                #    yield i
+                for i in self._symbolic_explorer_stub(state):
+                    yield i
         #long write bitmap
         '''
         file_bit_map=open('/dev/shm/work/'+self.identifier+'/driller/queue/bitmap','w')
