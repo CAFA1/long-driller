@@ -41,7 +41,7 @@ class DrillerCore(ExplorationTechnique):
     def complete(self, simgr):
         return not simgr.active or simgr.one_active.globals['bb_cnt'] >= len(self.trace)
     #long
-    def check_BR(self, state):
+    def ForwardProbe(self, state):
         # Create a new simulation manager and step it forward up to 1024
         # accumulated active states or steps.
         steps = 0
@@ -50,7 +50,7 @@ class DrillerCore(ExplorationTechnique):
         p = angr.Project(self.project.filename)
         simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
 
-        l.warning("start check_BR at "+hex(state.addr))
+        l.warning("start ForwardProbe at "+hex(state.addr))
         l.warning(hex(len(simgr.active)))
         while len(simgr.active) and steps < 2:
             prev_addr=simgr.one_active.addr
@@ -106,7 +106,7 @@ class DrillerCore(ExplorationTechnique):
                     if transition  in self.encounters or hit:
                         state1 = state.copy()
                         state1.preconstrainer.remove_preconstraints()
-                        if(self.check_BR(state1)):
+                        if(self.ForwardProbe(state1)):
                             l.warning('return 1')
                             l.warning(hex(state.addr))
                             diverted_flag=1
