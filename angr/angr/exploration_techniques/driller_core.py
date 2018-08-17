@@ -42,14 +42,9 @@ class DrillerCore(ExplorationTechnique):
         return not simgr.active or simgr.one_active.globals['bb_cnt'] >= len(self.trace)
     #long
     def ForwardProbe(self, state):
-        # Create a new simulation manager and step it forward up to 1024
-        # accumulated active states or steps.
         steps = 0
-        accumulated = 1
-
         p = angr.Project(self.project.filename)
         simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
-
         l.warning("start ForwardProbe at "+hex(state.addr))
         l.warning(hex(len(simgr.active)))
         while len(simgr.active) and steps < 2:
@@ -72,8 +67,6 @@ class DrillerCore(ExplorationTechnique):
                     return 1
                 steps += 1
                 l.warning(hex(steps))
-
-
         return 0
 
     def step(self, simgr, stash='active', **kwargs):
