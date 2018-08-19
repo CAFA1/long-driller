@@ -15,6 +15,7 @@
 	- [12. binaries](#12-binaries)
 - [test](#test)
 	- [1. control_dependency our](#1-control_dependency-our)
+	- [2 shellphuzz two branch](#2-shellphuzz-two-branch)
 
 <!-- /TOC -->
 
@@ -81,3 +82,7 @@
 ## 1. control_dependency our
 	cd test
 	python driller_explore.py -d 1 control_flow/control_dependency
+
+## 2 shellphuzz two branch
+	./shellphuzz -c 1 -d 1 -f 6 --no-dictionary ../test/control_flow/control_dependency
+	./shellphuzz -c 1 -d 1 -f 6 /vagrant/samples-master/examples/CADET_00001/bin/

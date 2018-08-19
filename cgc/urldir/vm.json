@@ -1,0 +1,17 @@
+{
+    "description": "This box contains a DECREE VM", 
+    "name": "cgc-linux-dev", 
+    "versions": [
+        {
+            "providers": [
+                {
+                    "checksum": "72d5505bbf203beb2ca8edd7aaee260d", 
+                    "checksum_type": "md5", 
+                    "name": "virtualbox", 
+                    "url": "http://127.0.0.1/cgc-linux-dev.box"
+                }
+            ], 
+            "version": "10565"
+        }
+    ]
+}
