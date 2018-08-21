@@ -13,6 +13,7 @@
 	- [10. fuzzer](#10-fuzzer)
 	- [11. driller](#11-driller)
 	- [12. binaries](#12-binaries)
+- [cgc samples](#cgc-samples)
 - [test](#test)
 	- [1. control_dependency our](#1-control_dependency-our)
 	- [2 shellphuzz two branch](#2-shellphuzz-two-branch)
@@ -49,7 +50,8 @@
 
 ## 7. shellphish-afl  
 	git clone https://github.com/shellphish/shellphish-afl.git  
-	python setup.py build  
+	python setup.py develop  
+	~/driller/shellphish-afl/bin/afl-cgc$ cp tracers/i386/afl-qemu-trace ./  
 	pip install -v -e .
 
 ## 8. tracer  
@@ -78,11 +80,14 @@
 ## 12. binaries  
 	git clone --depth 1 https://github.com/angr/binaries.git  
 
+# cgc samples
+	http://www.lungetech.com/cgc-corpus/cwe/cfe/
+	
 # test
 ## 1. control_dependency our
 	cd test
 	python driller_explore.py -d 1 control_flow/control_dependency
 
 ## 2 shellphuzz two branch
-	./shellphuzz -c 1 -d 1 -f 6 --no-dictionary ../test/control_flow/control_dependency
-	./shellphuzz -c 1 -d 1 -f 6 /vagrant/samples-master/examples/CADET_00001/bin/
+	./shellphuzz -c 1 -d 1 -f 6 --no-dictionary ../test/control_flow/control_dependency  
+	./shellphuzz -c 1 -d 1 -f 6 /vagrant/samples-master/examples/CADET_00001/bin/CADET_00001  

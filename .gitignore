@@ -1,4 +1,6 @@
 .idea/*
+*/.gdb_history
+*/peda-session*.txt
 shellphish-afl/
 binaries/
 archinfo/
