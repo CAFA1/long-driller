@@ -2,6 +2,7 @@ import logging
 from itertools import islice, izip
 import angr
 import time
+import datetime
 from . import ExplorationTechnique
 #long
 #logging.basicConfig(filename='/tmp/example.log', filemode='w', level=logging.DEBUG)
@@ -65,7 +66,8 @@ class DrillerCore(ExplorationTechnique):
                     self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
                     l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
                     logfile=open('/tmp/probe.txt','a')
-                    logfile.write('add : '+hex(prev_addr)+' --> '+hex(this_addr)+'\n')
+                    cur_time=datetime.datetime.now()
+                    logfile.write('%s %s %s : %s --> %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,hex(prev_addr),hex(this_addr)))
                     logfile.close()
                     #time.sleep(10000)
                     return 1

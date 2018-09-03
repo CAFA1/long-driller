@@ -12,6 +12,7 @@ import tarfile
 import argparse
 import importlib
 import logging.config
+import datetime
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Shellphish fuzzer interface")
@@ -34,6 +35,11 @@ if __name__ == "__main__":
     parser.add_argument('--driller-timeout', help="Number of seconds to allow driller to run", type=int, default=10*60)
     parser.add_argument('--length-extension', help="Try extending inputs to driller by this many bytes", type=int)
     args = parser.parse_args()
+    #long
+    mylogfile=open('/tmp/probe.txt','w')
+    start_time=datetime.datetime.now()
+    mylogfile.write('%s %s %s \n' % (start_time.hour,start_time.minute,start_time.second))
+    mylogfile.close()
 
     if os.path.isfile(os.path.join(os.getcwd(), args.logcfg)):
         logging.config.fileConfig(os.path.join(os.getcwd(), args.logcfg))
