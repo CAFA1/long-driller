@@ -13,3 +13,4 @@ test/data_flow1/data_flow
 cgc/urldir/cgc-linux-dev.box
 cgc/samples-master/
 cgc/.vagrant/
+*/data_flow
