@@ -5,8 +5,8 @@ int main(int argc, char*argv[])
 {
 	char x[100];
 	int magic;
-	read(0,x,100);
-	read(0,&magic,4);
+	read(0,x,10);
+	read(0,&magic,10);
 	if(strcmp(x,"command")==0)
 	{
 	    printf("%s\n","command");

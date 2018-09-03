@@ -42,7 +42,7 @@ class DrillerCore(ExplorationTechnique):
     def complete(self, simgr):
         return not simgr.active or simgr.one_active.globals['bb_cnt'] >= len(self.trace)
     #long
-    def ForwardProbe(self, state):
+    def ForwardProbe(self, state,log_str):
         steps = 0
         p = angr.Project(self.project.filename)
         simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
@@ -62,12 +62,12 @@ class DrillerCore(ExplorationTechnique):
                 cur_loc &= len(self.fuzz_bitmap) - 1
                 hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
                 if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
-                    self.encounters.add((prev_addr,this_addr))
-                    self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
+                    #self.encounters.add((prev_addr,this_addr))
+                    #self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
                     l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
                     logfile=open('/tmp/probe.txt','a')
                     cur_time=datetime.datetime.now()
-                    logfile.write('%s %s %s : %s --> %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,hex(prev_addr),hex(this_addr)))
+                    logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
                     logfile.close()
                     #time.sleep(10000)
                     return 1
@@ -98,6 +98,8 @@ class DrillerCore(ExplorationTechnique):
                 mapped_to = self.project.loader.find_object_containing(state.addr).binary
 
                 l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
+                #long
+                log_str=hex(transition[0])+' --> '+hex(transition[1])
                 #long disable encounters
                 #if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
                 if not self._has_false(state) and mapped_to != 'cle##externs':
@@ -105,7 +107,7 @@ class DrillerCore(ExplorationTechnique):
                     if transition  in self.encounters or hit:
                         state1 = state.copy()
                         state1.preconstrainer.remove_preconstraints()
-                        if(self.ForwardProbe(state1)):
+                        if(self.ForwardProbe(state1,log_str)):
                             l.warning('return 1')
                             l.warning(hex(state.addr))
                             diverted_flag=1
