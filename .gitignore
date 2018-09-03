@@ -14,3 +14,4 @@ cgc/urldir/cgc-linux-dev.box
 cgc/samples-master/
 cgc/.vagrant/
 */data_flow
+*/.gdb_history
