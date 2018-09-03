@@ -4948,6 +4948,7 @@ static u8 fuzz_one(char** argv) {
 
   u8  a_collect[MAX_AUTO_EXTRA];
   u32 a_len = 0;
+  //long
   u64 cur_ms;
 #ifdef IGNORE_FINDS
 
@@ -4986,7 +4987,7 @@ static u8 fuzz_one(char** argv) {
   }
 
 #endif /* ^IGNORE_FINDS */
-  //long
+  //long long
   cur_ms = get_cur_time();
   if (not_on_tty) {
     ACTF("%s,Fuzzing test case #%u (%u total, %llu uniq crashes found)...",DTD(cur_ms,start_time),
