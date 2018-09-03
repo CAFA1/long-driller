@@ -1,10 +1,10 @@
 import logging
 from itertools import islice, izip
 import angr
-
+import time
 from . import ExplorationTechnique
-
-
+#long
+#logging.basicConfig(filename='/tmp/example.log', filemode='w', level=logging.DEBUG)
 l = logging.getLogger("angr.exploration_techniques.driller_core")
 #long
 l.setLevel(logging.DEBUG)
@@ -64,6 +64,10 @@ class DrillerCore(ExplorationTechnique):
                     self.encounters.add((prev_addr,this_addr))
                     self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
                     l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
+                    logfile=open('/tmp/probe.txt','a')
+                    logfile.write('add : '+hex(prev_addr)+' --> '+hex(this_addr)+'\n')
+                    logfile.close()
+                    #time.sleep(10000)
                     return 1
                 steps += 1
                 l.warning(hex(steps))
