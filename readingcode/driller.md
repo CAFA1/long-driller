@@ -130,7 +130,7 @@ class Driller(object):
 
 		# Redis channel identifier.
 		self.identifier  = os.path.basename(binary)
-		self.input	   = input_str
+		self.input	   = input_str #liu: input content from the file
 		self.fuzz_bitmap = fuzz_bitmap
 		self.tag		 = tag
 		self.redis	   = redis
@@ -199,7 +199,7 @@ def _drill_input(self):
 	"""
 
 	# initialize the tracer
-	r = tracer.qemu_runner.QEMURunner(self.binary, self.input, argv=self.argv) 注意这里有输入
+	r = tracer.qemu_runner.QEMURunner(self.binary, self.input, argv=self.argv) #liu: 注意这里有输入
 	p = angr.Project(self.binary)
 	for addr, proc in self._hooks.items():
 		p.hook(addr, proc)
@@ -798,7 +798,7 @@ if args.driller_workers:
 ```
 ### 29.4.6 LocalCallback:: driller_callback <-drill_extension
 ```python
-在driller/local_callback.py文件中
+#在driller/local_callback.py文件中
 class LocalCallback(object):
 	def __init__(self, num_workers=1, worker_timeout=10*60, length_extension=None):
 		self._already_drilled_inputs = set()
@@ -808,20 +808,20 @@ class LocalCallback(object):
 		self._worker_timeout = worker_timeout
 		self._length_extension = length_extension
 
-python __call__关键词的使用，对象作为函数进行调用。
+#python __call__关键词的使用，对象作为函数进行调用。
 def driller_callback(self, fuzz):
 	l.warning("Driller stuck callback triggered!")
 	# remove any workers that aren't running
 	self._running_workers = [x for x in self._running_workers if x.is_alive()]
 
 	# get the files in queue
-	queue = self._queue_files(fuzz)  索引queue目录里面的文件名
+	queue = self._queue_files(fuzz)  #liu: 索引queue目录里面的文件名
 	#for i in range(1, fuzz.fuzz_id):
 	#	fname = "fuzzer-%d" % i
 	#	queue.extend(self.queue_files(fname))
 
 	# start drilling
-	not_drilled = set(queue) - self._already_drilled_inputs
+	not_drilled = set(queue) - self._already_drilled_inputs #liu: remember the previous drilled.
 	if len(not_drilled) == 0:
 		l.warning("no inputs left to drill")
 
@@ -831,10 +831,10 @@ def driller_callback(self, fuzz):
 		self._already_drilled_inputs.add(to_drill_path)
 
 		proc = multiprocessing.Process(target=_run_drill, args=(self, fuzz, to_drill_path),
-				kwargs={'length_extension': self._length_extension}) 开启一个新的进程
+				kwargs={'length_extension': self._length_extension}) #liu: 开启一个新的进程
 		proc.start()
 		self._running_workers.append(proc)
-__call__ = driller_callback 对象调用函数
+__call__ = driller_callback #对象调用函数
 ```
 #### 29.4.6.1 _queue_files 索引queue目录里面的文件名
 ```python
@@ -863,7 +863,7 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
 		"timeout", "-k", str(_timeout+10), str(_timeout),
 		sys.executable, os.path.abspath(__file__),
 		_binary_path, _fuzzer_out_dir, _bitmap_path, _path_to_input_to_drill
-	)  #liu 就是调用自身python文件
+	)  #liu: 就是调用自身python文件
 	if length_extension:
 		args += ('--length-extension', str(length_extension))
 
@@ -900,20 +900,20 @@ if __name__ == "__main__":
 
 	l.debug('drilling %s', path_to_input_to_drill)
 	# get the input
-	inputs_to_drill = [open(args.path_to_input_to_drill, "r").read()]
+	inputs_to_drill = [open(args.path_to_input_to_drill, "r").read()] #liu: read the content from the file
 	if args.length_extension:
 		inputs_to_drill.append(inputs_to_drill[0] + '\0' * args.length_extension)
 
 	for input_to_drill in inputs_to_drill:
-		d = driller.Driller(args.binary_path, input_to_drill, fuzzer_bitmap) 见28.1
+		d = driller.Driller(args.binary_path, input_to_drill, fuzzer_bitmap) #见28.1
 		count = 0
 		for new_input in d.drill_generator():# liu real offline symbolic execution
 			id_num = len(os.listdir(driller_queue_dir))
 			fuzzer_from = args.path_to_input_to_drill.split("sync/")[1].split("/")[0] + args.path_to_input_to_drill.split("id:")[1].split(",")[0]
 			filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",from:" + fuzzer_from
-			filepath = os.path.join(driller_queue_dir, filepath) 命名规则
+			filepath = os.path.join(driller_queue_dir, filepath) #命名规则
 			with open(filepath, "wb") as f:
-				f.write(new_input[1]) 新发现写到driller/queque的文件中
+				f.write(new_input[1])# 新发现写到driller/queque的文件中
 			count += 1
 	l.warning("found %d new inputs", count)
 ```

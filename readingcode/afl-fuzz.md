@@ -36,6 +36,12 @@
 	- [3.5 save_if_interesting](#35-save_if_interesting)
 	- [3.6 SYNC_INTERVAL](#36-sync_interval)
 	- [3.7 每个fuzzer都是同步的，因为不分M，S](#37-每个fuzzer都是同步的因为不分ms)
+- [4. out_file @@](#4-out_file-)
+	- [4.1 detect_file_args: out_file assignment](#41-detect_file_args-out_file-assignment)
+	- [4.2 setup_stdio_file: out_fd assignment](#42-setup_stdio_file-out_fd-assignment)
+	- [4.3 init_forkserver no @@ dup2 stdin](#43-init_forkserver-no--dup2-stdin)
+	- [4.4 afl-as.h](#44-afl-ash)
+	- [4.5 @@ stdin /dev/null](#45--stdin-devnull)
 
 <!-- /TOC -->
 # 1. bitmap 
@@ -2306,14 +2312,14 @@
 		/* In non-dumb mode, we have the fork server up and running, so simply
 		tell it to have at it, and then read back PID. */
 
-		if ((res = write(fsrv_ctl_fd, &prev_timed_out, 4)) != 4) {//liu start see 1.1.3 
+		if ((res = write(fsrv_ctl_fd, &prev_timed_out, 4)) != 4) {//liu: each run grandchild see 1.1.3 and 4.4 
 
 		if (stop_soon) return 0;
 		RPFATAL(res, "Unable to request new process from fork server (OOM?)");
 
 		}
 
-		if ((res = read(fsrv_st_fd, &child_pid, 4)) != 4) {//liu get child_pid
+		if ((res = read(fsrv_st_fd, &child_pid, 4)) != 4) {//liu get grandchild pid
 
 		if (stop_soon) return 0;
 		RPFATAL(res, "Unable to request new process from fork server (OOM?)");
@@ -2326,7 +2332,7 @@
 
 	/* Configure timeout, as requested by user, then wait for child to terminate. */
 
-	it.it_value.tv_sec = (timeout / 1000);
+	it.it_value.tv_sec = (timeout / 1000); //liu: note the timeout
 	it.it_value.tv_usec = (timeout % 1000) * 1000;
 
 	setitimer(ITIMER_REAL, &it, NULL);//liu set timeout timer
@@ -2341,7 +2347,7 @@
 
 		s32 res;
 
-		if ((res = read(fsrv_st_fd, &status, 4)) != 4) {//liu read exit_code
+		if ((res = read(fsrv_st_fd, &status, 4)) != 4) {//liu: read grandchild exit status
 
 		if (stop_soon) return 0;
 		RPFATAL(res, "Unable to communicate with fork server (OOM?)");
@@ -3448,7 +3454,587 @@
 	sync_id = optarg;
 	break;
 
-#
+# 4. out_file @@
+## 4.1 detect_file_args: out_file assignment
+
+```C
+	/* Detect @@ in args. */
+
+	EXP_ST void detect_file_args(char** argv) {
+
+	u32 i = 0;
+	u8* cwd = getcwd(NULL, 0);
+
+	if (!cwd) PFATAL("getcwd() failed");
+
+	while (argv[i]) {
+
+		u8* aa_loc = strstr(argv[i], "@@");
+
+		if (aa_loc) { //liu : if there is no "@@", out_file is null, otherwise, out_file is .cur_input.
+
+		u8 *aa_subst, *n_arg;
+
+		/* If we don't have a file name chosen yet, use a safe default. */
+
+		if (!out_file)
+			out_file = alloc_printf("%s/.cur_input", out_dir);
+
+		/* Be sure that we're always using fully-qualified paths. */
+
+		if (out_file[0] == '/') aa_subst = out_file;
+		else aa_subst = alloc_printf("%s/%s", cwd, out_file);
+
+		/* Construct a replacement argv value. */
+
+		*aa_loc = 0;
+		n_arg = alloc_printf("%s%s%s", argv[i], aa_subst, aa_loc + 2);
+		argv[i] = n_arg;
+		*aa_loc = '@';
+
+		if (out_file[0] != '/') ck_free(aa_subst);
+
+		}
+
+		i++;
+
+	}
+
+	free(cwd); /* not tracked */
+
+	}
+```
+## 4.2 setup_stdio_file: out_fd assignment
+```c
+	/* Setup the output file for fuzzed data, if not using -f. */
+
+	EXP_ST void setup_stdio_file(void) {
+
+	u8* fn = alloc_printf("%s/.cur_input", out_dir);
+
+	unlink(fn); /* Ignore errors */
+
+	out_fd = open(fn, O_RDWR | O_CREAT | O_EXCL, 0600); //liu: out_fd is the handle of .cur_input file.
+
+	if (out_fd < 0) PFATAL("Unable to create '%s'", fn);
+
+	ck_free(fn);
+
+	}
+	//liu: in the main function the setup_stdio_file is called.
+	if (!out_file) setup_stdio_file();
+
+```
+## 4.3 init_forkserver no @@ dup2 stdin
+```c
+	/* Spin up fork server (instrumented mode only). The idea is explained here:
+
+	http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html
+
+	In essence, the instrumentation allows us to skip execve(), and just keep
+	cloning a stopped child. So, we just execute once, and then send commands
+	through a pipe. The other part of this logic is in afl-as.h. */
+
+	EXP_ST void init_forkserver(char** argv) {
+
+	static struct itimerval it;
+	int st_pipe[2], ctl_pipe[2];
+	int status;
+	s32 rlen;
+
+	ACTF("Spinning up the fork server...");
+
+	if (pipe(st_pipe) || pipe(ctl_pipe)) PFATAL("pipe() failed");
+
+	forksrv_pid = fork();
+
+	if (forksrv_pid < 0) PFATAL("fork() failed");
+
+	if (!forksrv_pid) {//liu: child process
+
+		struct rlimit r;
+
+		/* Umpf. On OpenBSD, the default fd limit for root users is set to
+		soft 128. Let's try to fix that... */
+
+		if (!getrlimit(RLIMIT_NOFILE, &r) && r.rlim_cur < FORKSRV_FD + 2) {
+
+		r.rlim_cur = FORKSRV_FD + 2;
+		setrlimit(RLIMIT_NOFILE, &r); /* Ignore errors */
+
+		}
+
+		if (mem_limit) {
+
+			r.rlim_max = r.rlim_cur = ((rlim_t)mem_limit) << 20;
+
+		#ifdef RLIMIT_AS
+
+			setrlimit(RLIMIT_AS, &r); /* Ignore errors */
+
+		#else
+
+			/* This takes care of OpenBSD, which doesn't have RLIMIT_AS, but
+				according to reliable sources, RLIMIT_DATA covers anonymous
+				maps - so we should be getting good protection against OOM bugs. */
+
+			setrlimit(RLIMIT_DATA, &r); /* Ignore errors */
+
+		#endif /* ^RLIMIT_AS */
+
+
+		}
+
+		/* Dumping cores is slow and can lead to anomalies if SIGKILL is delivered
+		before the dump is complete. */
+
+		r.rlim_max = r.rlim_cur = 0;
+
+		setrlimit(RLIMIT_CORE, &r); /* Ignore errors */
+
+		/*liu: Isolate the process and configure standard descriptors. If out_file is
+		specified, stdin is /dev/null; otherwise, out_fd is cloned instead. */
+
+		setsid();
+
+		dup2(dev_null_fd, 1);//liu: child process can't output to the stdout.
+		dup2(dev_null_fd, 2);//liu: dev_null_fd = open("/dev/null", O_RDWR);
+
+		if (out_file) {
+
+		dup2(dev_null_fd, 0);//liu: if we set the "@@" parameter, the out_file is not null, so the child process can't get input from the stdin.
+
+		} else {
+
+		dup2(out_fd, 0); //liu: if we don't set the "@@" parameter, the out_fd is redirected to the stdin.
+		close(out_fd);
+
+		}
+
+		/* Set up control and status pipes, close the unneeded original fds. */
+
+		if (dup2(ctl_pipe[0], FORKSRV_FD) < 0) PFATAL("dup2() failed");
+		if (dup2(st_pipe[1], FORKSRV_FD + 1) < 0) PFATAL("dup2() failed");
+
+		close(ctl_pipe[0]);
+		close(ctl_pipe[1]);
+		close(st_pipe[0]);
+		close(st_pipe[1]);
+
+		close(out_dir_fd);
+		close(dev_null_fd);
+		close(dev_urandom_fd);
+		close(fileno(plot_file));
+
+		/* This should improve performance a bit, since it stops the linker from
+		doing extra work post-fork(). */
+
+		if (!getenv("LD_BIND_LAZY")) setenv("LD_BIND_NOW", "1", 0);
+
+		/* Set sane defaults for ASAN if nothing else specified. */
+
+		setenv("ASAN_OPTIONS", "abort_on_error=1:"
+							"detect_leaks=0:"
+							"symbolize=0:"
+							"allocator_may_return_null=1", 0);
+
+		/* MSAN is tricky, because it doesn't support abort_on_error=1 at this
+		point. So, we do this in a very hacky way. */
+
+		setenv("MSAN_OPTIONS", "exit_code=" STRINGIFY(MSAN_ERROR) ":"
+							"symbolize=0:"
+							"abort_on_error=1:"
+							"allocator_may_return_null=1:"
+							"msan_track_origins=0", 0);
+
+		execv(target_path, argv);//liu: the target binary is running in the child process.
+
+		/* Use a distinctive bitmap signature to tell the parent about execv()
+		falling through. */
+
+		*(u32*)trace_bits = EXEC_FAIL_SIG;
+		exit(0);
+
+	}
+
+	/* Close the unneeded endpoints. */
+
+	close(ctl_pipe[0]);
+	close(st_pipe[1]);
+
+	fsrv_ctl_fd = ctl_pipe[1];
+	fsrv_st_fd  = st_pipe[0];
+
+	/* Wait for the fork server to come up, but don't wait too long. */
+
+	it.it_value.tv_sec = ((exec_tmout * FORK_WAIT_MULT) / 1000);
+	it.it_value.tv_usec = ((exec_tmout * FORK_WAIT_MULT) % 1000) * 1000;
+
+	setitimer(ITIMER_REAL, &it, NULL);
+
+	rlen = read(fsrv_st_fd, &status, 4);//liu: wait for the child process to start.
+
+	it.it_value.tv_sec = 0;
+	it.it_value.tv_usec = 0;
+
+	setitimer(ITIMER_REAL, &it, NULL);
+
+	/* If we have a four-byte "hello" message from the server, we're all set.
+		Otherwise, try to figure out what went wrong. */ //liu:
+
+	if (rlen == 4) {
+		OKF("All right - fork server is up.");
+		return; //liu: here we succeed and return.
+	}
+
+	if (child_timed_out)
+		FATAL("Timeout while initializing fork server (adjusting -t may help)");
+
+	if (waitpid(forksrv_pid, &status, 0) <= 0)
+		PFATAL("waitpid() failed");
+
+	if (WIFSIGNALED(status)) {
+
+		if (mem_limit && mem_limit < 500 && uses_asan) {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Whoops, the target binary crashed suddenly, before receiving any input\n"
+			"    from the fuzzer! Since it seems to be built with ASAN and you have a\n"
+			"    restrictive memory limit configured, this is expected; please read\n"
+			"    %s/notes_for_asan.txt for help.\n", doc_path);
+
+		} else if (!mem_limit) {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Whoops, the target binary crashed suddenly, before receiving any input\n"
+			"    from the fuzzer! There are several probable explanations:\n\n"
+
+			"    - The binary is just buggy and explodes entirely on its own. If so, you\n"
+			"      need to fix the underlying problem or find a better replacement.\n\n"
+
+	#ifdef __APPLE__
+
+			"    - On MacOS X, the semantics of fork() syscalls are non-standard and may\n"
+			"      break afl-fuzz performance optimizations when running platform-specific\n"
+			"      targets. To fix this, set AFL_NO_FORKSRV=1 in the environment.\n\n"
+
+	#endif /* __APPLE__ */
+
+			"    - Less likely, there is a horrible bug in the fuzzer. If other options\n"
+			"      fail, poke <lcamtuf@coredump.cx> for troubleshooting tips.\n");
+
+		} else {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Whoops, the target binary crashed suddenly, before receiving any input\n"
+			"    from the fuzzer! There are several probable explanations:\n\n"
+
+			"    - The current memory limit (%s) is too restrictive, causing the\n"
+			"      target to hit an OOM condition in the dynamic linker. Try bumping up\n"
+			"      the limit with the -m setting in the command line. A simple way confirm\n"
+			"      this diagnosis would be:\n\n"
+
+	#ifdef RLIMIT_AS
+			"      ( ulimit -Sv $[%llu << 10]; /path/to/fuzzed_app )\n\n"
+	#else
+			"      ( ulimit -Sd $[%llu << 10]; /path/to/fuzzed_app )\n\n"
+	#endif /* ^RLIMIT_AS */
+
+			"      Tip: you can use http://jwilk.net/software/recidivm to quickly\n"
+			"      estimate the required amount of virtual memory for the binary.\n\n"
+
+			"    - The binary is just buggy and explodes entirely on its own. If so, you\n"
+			"      need to fix the underlying problem or find a better replacement.\n\n"
+
+	#ifdef __APPLE__
+
+			"    - On MacOS X, the semantics of fork() syscalls are non-standard and may\n"
+			"      break afl-fuzz performance optimizations when running platform-specific\n"
+			"      targets. To fix this, set AFL_NO_FORKSRV=1 in the environment.\n\n"
+
+	#endif /* __APPLE__ */
+
+			"    - Less likely, there is a horrible bug in the fuzzer. If other options\n"
+			"      fail, poke <lcamtuf@coredump.cx> for troubleshooting tips.\n",
+			DMS(mem_limit << 20), mem_limit - 1);
+
+		}
+
+		FATAL("Fork server crashed with signal %d", WTERMSIG(status));
+
+	}
+
+	if (*(u32*)trace_bits == EXEC_FAIL_SIG)
+		FATAL("Unable to execute target application ('%s')", argv[0]);
+
+	if (mem_limit && mem_limit < 500 && uses_asan) {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Hmm, looks like the target binary terminated before we could complete a\n"
+			"    handshake with the injected code. Since it seems to be built with ASAN and\n"
+			"    you have a restrictive memory limit configured, this is expected; please\n"
+			"    read %s/notes_for_asan.txt for help.\n", doc_path);
+
+	} else if (!mem_limit) {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Hmm, looks like the target binary terminated before we could complete a\n"
+			"    handshake with the injected code. Perhaps there is a horrible bug in the\n"
+			"    fuzzer. Poke <lcamtuf@coredump.cx> for troubleshooting tips.\n");
+
+	} else {
+
+		SAYF("\n" cLRD "[-] " cRST
+			"Hmm, looks like the target binary terminated before we could complete a\n"
+			"    handshake with the injected code. There are %s probable explanations:\n\n"
+
+			"%s"
+			"    - The current memory limit (%s) is too restrictive, causing an OOM\n"
+			"      fault in the dynamic linker. This can be fixed with the -m option. A\n"
+			"      simple way to confirm the diagnosis may be:\n\n"
+
+	#ifdef RLIMIT_AS
+			"      ( ulimit -Sv $[%llu << 10]; /path/to/fuzzed_app )\n\n"
+	#else
+			"      ( ulimit -Sd $[%llu << 10]; /path/to/fuzzed_app )\n\n"
+	#endif /* ^RLIMIT_AS */
+
+			"      Tip: you can use http://jwilk.net/software/recidivm to quickly\n"
+			"      estimate the required amount of virtual memory for the binary.\n\n"
+
+			"    - Less likely, there is a horrible bug in the fuzzer. If other options\n"
+			"      fail, poke <lcamtuf@coredump.cx> for troubleshooting tips.\n",
+			getenv(DEFER_ENV_VAR) ? "three" : "two",
+			getenv(DEFER_ENV_VAR) ?
+			"    - You are using deferred forkserver, but __AFL_INIT() is never\n"
+			"      reached before the program terminates.\n\n" : "",
+			DMS(mem_limit << 20), mem_limit - 1);
+
+	}
+
+	FATAL("Fork server handshake failed");
+
+	}
+```
+## 4.4 afl-as.h
+```c
+	static const u8* main_payload_32 = 
+
+	"\n"
+	"/* --- AFL MAIN PAYLOAD (32-BIT) --- */\n"
+	"\n"
+	".text\n"
+	".att_syntax\n"
+	".code32\n"
+	".align 8\n"
+	"\n"
+
+	"__afl_maybe_log:\n" //liu:
+	"\n"
+	"  lahf\n"
+	"  seto %al\n"
+	"\n"
+	"  /* Check if SHM region is already mapped. */\n"
+	"\n"
+	"  movl  __afl_area_ptr, %edx\n"
+	"  testl %edx, %edx\n"
+	"  je    __afl_setup\n"
+	"\n"
+	"__afl_store:\n"
+	"\n"
+	"  /* Calculate and store hit for the code location specified in ecx. There\n"
+	"     is a double-XOR way of doing this without tainting another register,\n"
+	"     and we use it on 64-bit systems; but it's slower for 32-bit ones. */\n"
+	"\n"
+	#ifndef COVERAGE_ONLY
+	"  movl __afl_prev_loc, %edi\n"
+	"  xorl %ecx, %edi\n"
+	"  shrl $1, %ecx\n"
+	"  movl %ecx, __afl_prev_loc\n"
+	#else
+	"  movl %ecx, %edi\n"
+	#endif /* ^!COVERAGE_ONLY */
+	"\n"
+	#ifdef SKIP_COUNTS
+	"  orb  $1, (%edx, %edi, 1)\n"
+	#else
+	"  incb (%edx, %edi, 1)\n" //liu: trace_bits[index]++
+	#endif /* ^SKIP_COUNTS */
+	"\n"
+	"__afl_return:\n"
+	"\n"
+	"  addb $127, %al\n"
+	"  sahf\n"
+	"  ret\n"
+	"\n"
+	".align 8\n"
+	"\n"
+	"__afl_setup:\n"
+	"\n"
+	"  /* Do not retry setup if we had previous failures. */\n"
+	"\n"
+	"  cmpb $0, __afl_setup_failure\n"
+	"  jne  __afl_return\n"
+	"\n"
+	"  /* Map SHM, jumping to __afl_setup_abort if something goes wrong.\n"
+	"     We do not save FPU/MMX/SSE registers here, but hopefully, nobody\n"
+	"     will notice this early in the game. */\n"
+	"\n"
+	"  pushl %eax\n"
+	"  pushl %ecx\n"
+	"\n"
+	"  pushl $.AFL_SHM_ENV\n"
+	"  call  getenv\n"
+	"  addl  $4, %esp\n"
+	"\n"
+	"  testl %eax, %eax\n"
+	"  je    __afl_setup_abort\n"
+	"\n"
+	"  pushl %eax\n"
+	"  call  atoi\n"
+	"  addl  $4, %esp\n"
+	"\n"
+	"  pushl $0          /* shmat flags    */\n"
+	"  pushl $0          /* requested addr */\n"
+	"  pushl %eax        /* SHM ID         */\n"
+	"  call  shmat\n"
+	"  addl  $12, %esp\n"
+	"\n"
+	"  cmpl $-1, %eax\n"
+	"  je   __afl_setup_abort\n"
+	"\n"
+	"  /* Store the address of the SHM region. */\n"
+	"\n"
+	"  movl %eax, __afl_area_ptr\n"//liu: get trace_bits memory location
+	"  movl %eax, %edx\n"
+	"\n"
+	"  popl %ecx\n"
+	"  popl %eax\n"
+	"\n"
+	"__afl_forkserver:\n"
+	"\n"
+	"  /* Enter the fork server mode to avoid the overhead of execve() calls. */\n"
+	"\n"
+	"  pushl %eax\n"
+	"  pushl %ecx\n"
+	"  pushl %edx\n"
+	"\n"
+	"  /* Phone home and tell the parent that we're OK. (Note that signals with\n"
+	"     no SA_RESTART will mess it up). If this fails, assume that the fd is\n"
+	"     closed because we were execve()d from an instrumented binary, or because\n" 
+	"     the parent doesn't want to use the fork server. */\n"
+	"\n"
+	"  pushl $4          /* length    */\n"
+	"  pushl $__afl_temp /* data      */\n"
+	"  pushl $ STRINGIFY((FORKSRV_FD + 1)) " //liu: i change for format.
+	"  call  write\n" //liu: tell the parent process the child's start through the pipe.
+	"  addl  $12, %esp\n"
+	"\n"
+	"  cmpl  $4, %eax\n"
+	"  jne   __afl_fork_resume\n"
+	"\n"
+	"__afl_fork_wait_loop:\n"
+	"\n"
+	"  /* Wait for parent by reading from the pipe. Abort if read fails. */\n"
+	"\n"
+	"  pushl $4          /* length    */\n"
+	"  pushl $__afl_temp /* data      */\n"
+	"  pushl $ STRINGIFY(FORKSRV_FD) "
+	"  call  read\n" //liu: each run ; see run_target in 2.2.2.2
+	"  addl  $12, %esp\n"
+	"\n"
+	"  cmpl  $4, %eax\n"
+	"  jne   __afl_die\n"
+	"\n"
+	"  /* Once woken up, create a clone of our process. This is an excellent use\n"
+	"     case for syscall(__NR_clone, 0, CLONE_PARENT), but glibc boneheadedly\n"
+	"     caches getpid() results and offers no way to update the value, breaking\n"
+	"     abort(), raise(), and a bunch of other things :-( */\n"
+	"\n"
+	"  call fork\n"
+	"\n"
+	"  cmpl $0, %eax\n"
+	"  jl   __afl_die\n"
+	"  je   __afl_fork_resume\n"
+	"\n"
+	"  /* In parent process: write PID to pipe, then wait for child. */\n"
+	"\n"
+	"  movl  %eax, __afl_fork_pid\n"
+	"\n"
+	"  pushl $4              /* length    */\n"
+	"  pushl $__afl_fork_pid /* data      */\n"
+	"  pushl $ STRINGIFY((FORKSRV_FD + 1)) "
+	"  call  write\n" //liu: send the grandchild's pid.
+	"  addl  $12, %esp\n"
+	"\n"
+	"  pushl $0             /* no flags  */\n"
+	"  pushl $__afl_temp    /* status    */\n"
+	"  pushl __afl_fork_pid /* PID       */\n"
+	"  call  waitpid\n"
+	"  addl  $12, %esp\n"
+	"\n"
+	"  cmpl  $0, %eax\n"
+	"  jle   __afl_die\n"
+	"\n"
+	"  /* Relay wait status to pipe, then loop back. */\n"
+	"\n"
+	"  pushl $4          /* length    */\n"
+	"  pushl $__afl_temp /* data      */\n"
+	"  pushl $ STRINGIFY((FORKSRV_FD + 1)) "
+	"  call  write\n" //liu: send the grandchild's exit status.
+	"  addl  $12, %esp\n"
+	"\n"
+	"  jmp __afl_fork_wait_loop\n" //liu: loop forever.
+	"\n"
+	"__afl_fork_resume:\n"
+	"\n"
+	"  /* In child process: close fds, resume execution. */\n"
+	"\n"
+	"  pushl $" STRINGIFY(FORKSRV_FD) "\n"
+	"  call  close\n"
+	"\n"
+	"  pushl $" STRINGIFY((FORKSRV_FD + 1)) "\n"
+	"  call  close\n"
+	"\n"
+	"  addl  $8, %esp\n"
+	"\n"
+	"  popl %edx\n"
+	"  popl %ecx\n"
+	"  popl %eax\n"
+	"  jmp  __afl_store\n"
+	"\n"
+	"__afl_die:\n"
+	"\n"
+	"  xorl %eax, %eax\n"
+	"  call _exit\n"
+	"\n"
+	"__afl_setup_abort:\n"
+	"\n"
+	"  /* Record setup failure so that we don't keep calling\n"
+	"     shmget() / shmat() over and over again. */\n"
+	"\n"
+	"  incb __afl_setup_failure\n"
+	"  popl %ecx\n"
+	"  popl %eax\n"
+	"  jmp __afl_return\n"
+	"\n"
+	".AFL_VARS:\n"
+	"\n"
+	"  .comm   __afl_area_ptr, 4, 32\n"
+	"  .comm   __afl_setup_failure, 1, 32\n"
+	#ifndef COVERAGE_ONLY
+	"  .comm   __afl_prev_loc, 4, 32\n"
+	#endif /* !COVERAGE_ONLY */
+	"  .comm   __afl_fork_pid, 4, 32\n"
+	"  .comm   __afl_temp, 4, 32\n"
+	"\n"
+	".AFL_SHM_ENV:\n"
+	"  .asciz \"" SHM_ENV_VAR "\"\n"
+	"\n"
+	"/* --- END --- */\n"
+	"\n";
+```
+## 4.5 @@ stdin /dev/null
 
 
 

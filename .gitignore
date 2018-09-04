@@ -15,3 +15,4 @@ cgc/samples-master/
 cgc/.vagrant/
 */data_flow
 */.gdb_history
+test/read_two/two_read

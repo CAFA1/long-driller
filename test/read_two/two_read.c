@@ -3,15 +3,15 @@
 #include <string.h>
 int main(int argc, char*argv[])
 {
-	char x[100];
-	int magic;
+	char x[20];
+	char magic[20];
 	read(0,x,10);
-	read(0,&magic,10);
-	if(strcmp(x,"command")==0)
+	read(0,magic,10);
+	if(strcmp(x,"command\n")==0)
 	{
 	    printf("%s\n","command");
 	}
-	if(magic==0x41414141)
-	    printf("%s\n","magic");
+	if(strcmp(magic,"hello\n")==0)
+	    printf("%s\n","hello");
     return 0;
 }
