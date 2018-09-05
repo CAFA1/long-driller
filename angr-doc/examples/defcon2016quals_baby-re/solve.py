@@ -16,24 +16,24 @@ def main():
     proj = angr.Project('./baby-re', auto_load_libs=False)
 
     # let's provide the exact variables received through the scanf so we don't have to worry about parsing stdin into a bunch of ints.
-    flag_chars = [claripy.BVS('flag_%d' % i, 32) for i in xrange(13)]
+    flag_chars = [claripy.BVS('flag_%d' % i, 32) for i in xrange(13)] #long symbolic veriable
     class my_scanf(angr.SimProcedure):
         def run(self, fmt, ptr): # pylint: disable=arguments-differ,unused-argument
             self.state.mem[ptr].dword = flag_chars[self.state.globals['scanf_count']]
             self.state.globals['scanf_count'] += 1
 
-    proj.hook_symbol('__isoc99_scanf', my_scanf(), replace=True)
+    proj.hook_symbol('__isoc99_scanf', my_scanf(), replace=True) #long hook symbol
 
     sm = proj.factory.simulation_manager()
     sm.one_active.options.add(angr.options.LAZY_SOLVES)
-    sm.one_active.globals['scanf_count'] = 0
+    sm.one_active.globals['scanf_count'] = 0 #global veriable
 
     # search for just before the printf("%c%c...")
     # If we get to 0x402941, "Wrong" is going to be printed out, so definitely avoid that.
     sm.explore(find=0x4028E9, avoid=0x402941)
 
     # evaluate each of the flag chars against the constraints on the found state to construct the flag
-    flag = ''.join(chr(sm.one_found.solver.eval(c)) for c in flag_chars)
+    flag = ''.join(chr(sm.one_found.solver.eval(c)) for c in flag_chars) #long solve the symbolic veriables
     return flag
 
 def test():
