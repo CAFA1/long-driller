@@ -437,7 +437,9 @@ class QEMURunner(Runner):
                 it is possible that the log file size exceeds the 1G limit,
                 meaning that there might be infinite loops in the target program""")
             finally:
-                os.remove(logname)
+                #long: cp logname to share folder for ida to render the color
+                #os.remove(logname)
+                os.system('mv '+logname+' /mnt/hgfs/tracefile/')
 
         if self._record_magic:
             try:
