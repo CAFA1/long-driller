@@ -244,7 +244,7 @@ def _drill_input(self):
 		while simgr.diverted:#liu make new sample for the diverted state at each step
 			state = simgr.diverted.pop(0)
 			l.debug("Found a diverted state, exploring to some extent.")
-			w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample
+			w = self._writeout(state.history.bbl_addrs[-1], state) #liu solve the state and generate a new sample 28.3.4 _writeout
 			if w is not None:
 				yield w
 			for i in self._symbolic_explorer_stub(state):
