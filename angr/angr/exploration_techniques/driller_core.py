@@ -46,8 +46,8 @@ class DrillerCore(ExplorationTechnique):
         steps = 0
         p = angr.Project(self.project.filename)
         simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
-        l.warning("start ForwardProbe at "+hex(state.addr))
-        l.warning(hex(len(simgr.active)))
+        #l.warning("start ForwardProbe at "+hex(state.addr))
+        #l.warning(hex(len(simgr.active)))
         while len(simgr.active) and steps < 2:
             prev_addr=simgr.one_active.addr
             simgr.step()
@@ -62,7 +62,7 @@ class DrillerCore(ExplorationTechnique):
                 cur_loc &= len(self.fuzz_bitmap) - 1
                 hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
                 if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
-                    #self.encounters.add((prev_addr,this_addr))
+                    self.encounters.add((prev_addr,this_addr))
                     #self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
                     l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
                     logfile=open('/tmp/probe.txt','a')
@@ -72,7 +72,7 @@ class DrillerCore(ExplorationTechnique):
                     #time.sleep(10000)
                     return 1
                 steps += 1
-                l.warning(hex(steps))
+                #l.warning(hex(steps))
         return 0
 
     def step(self, simgr, stash='active', **kwargs):
@@ -97,7 +97,7 @@ class DrillerCore(ExplorationTechnique):
                 transition = (prev_addr, state.addr)
                 mapped_to = self.project.loader.find_object_containing(state.addr).binary
 
-                l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
+                #l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
                 #long
                 log_str=hex(transition[0])+' --> '+hex(transition[1])
                 #long disable encounters
@@ -108,8 +108,8 @@ class DrillerCore(ExplorationTechnique):
                         state1 = state.copy()
                         state1.preconstrainer.remove_preconstraints()
                         if(self.ForwardProbe(state1,log_str)):
-                            l.warning('return 1')
-                            l.warning(hex(state.addr))
+                            #l.warning('return 1')
+                            #l.warning(hex(state.addr))
                             diverted_flag=1
                     else:
                         diverted_flag=1
@@ -118,19 +118,23 @@ class DrillerCore(ExplorationTechnique):
 
                         if state.satisfiable():
                             # A completely new state transition.
-                            l.debug("Found a completely new transition, putting into 'diverted' stash.")
+                            #l.debug("Found a completely new transition, putting into 'diverted' stash.")
+                            l.debug("Found diverted transition %#x -> %#x.", transition[0], transition[1])
                             simgr.stashes['diverted'].append(state)
                             self.encounters.add(transition)
                             #long update bitmap
                             self.fuzz_bitmap[cur_loc ^ prev_loc]=chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc])&~1)
 
                         else:
-                            l.debug("State at %#x is not satisfiable.", transition[1])
+                            #l.debug("State at %#x is not satisfiable.", transition[1])
+                            pass
                     else:
-                        l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                        #l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                        pass
 
                 elif self._has_false(state):
-                    l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
+                    #l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
+                    pass
 
                 else:
                     l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
