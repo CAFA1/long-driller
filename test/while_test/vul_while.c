@@ -30,5 +30,12 @@ int main(int argc, char*argv[])
 	    {
 	        printf("magic pass\n");//*(int*)0=1;
 	    }
+	    else
+	    {
+	    	printf("magic not pass\n");
+	    }
+	}
+	else{
+		printf("check not pass\n");
 	}
 }
