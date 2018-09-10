@@ -119,6 +119,7 @@ class DrillerCore(ExplorationTechnique):
                         if state.satisfiable():
                             # A completely new state transition.
                             #l.debug("Found a completely new transition, putting into 'diverted' stash.")
+                            l.debug(repr(state.se.constraints))
                             l.debug("Found diverted transition %#x -> %#x.", transition[0], transition[1])
                             simgr.stashes['diverted'].append(state)
                             self.encounters.add(transition)
