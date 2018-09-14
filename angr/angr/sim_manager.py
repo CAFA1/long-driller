@@ -330,6 +330,8 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         bucket = defaultdict(list)
         #long sim_manager.py step
         debug_flag=0
+        if debug_flag:
+            l.warning(str(len(self._fetch_states(stash=stash))))
         for state in self._fetch_states(stash=stash):
 
             goto = self.filter(state, filter_func)

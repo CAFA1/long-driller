@@ -61,10 +61,11 @@ class DrillerCore(ExplorationTechnique):
                 cur_loc = (cur_loc >> 4) ^ (cur_loc << 8)
                 cur_loc &= len(self.fuzz_bitmap) - 1
                 hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
-                if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
-                    self.encounters.add((prev_addr,this_addr))
+                #if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
+                if ((prev_addr,this_addr) not in self.encounters and not hit):
+                    #self.encounters.add((prev_addr,this_addr)) #add to the encounters after
                     #self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
-                    l.warning('add : '+hex(prev_addr)+' --> '+hex(this_addr))
+                    l.warning('flip : '+log_str+' because found: '+hex(prev_addr)+' --> '+hex(this_addr))
                     logfile=open('/tmp/probe.txt','a')
                     cur_time=datetime.datetime.now()
                     logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
@@ -107,10 +108,11 @@ class DrillerCore(ExplorationTechnique):
                     if transition  in self.encounters or hit:
                         state1 = state.copy()
                         state1.preconstrainer.remove_preconstraints()
-                        if(self.ForwardProbe(state1,log_str)):
+                        if state1.satisfiable():
+                            if(self.ForwardProbe(state1,log_str)):
                             #l.warning('return 1')
                             #l.warning(hex(state.addr))
-                            diverted_flag=1
+                                diverted_flag=1
                     else:
                         diverted_flag=1
                     if(diverted_flag==1):
@@ -123,8 +125,8 @@ class DrillerCore(ExplorationTechnique):
                             l.debug("Found diverted transition %#x -> %#x.", transition[0], transition[1])
                             simgr.stashes['diverted'].append(state)
                             self.encounters.add(transition)
-                            #long update bitmap
-                            self.fuzz_bitmap[cur_loc ^ prev_loc]=chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc])&~1)
+                            #long update bitmap # no need update;relay on the fuzzer to update
+                            #self.fuzz_bitmap[cur_loc ^ prev_loc]=chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc])&~1)
 
                         else:
                             #l.debug("State at %#x is not satisfiable.", transition[1])

@@ -123,6 +123,7 @@ if __name__ == "__main__":
 
     binary_path, fuzzer_out_dir, bitmap_path, path_to_input_to_drill = sys.argv[1:5]
     #long bitmap origin is string, now change to list
+    l.warning(args.bitmap_path)
     fuzzer_bitmap = list(open(args.bitmap_path, "r").read())
 
     # create a folder
