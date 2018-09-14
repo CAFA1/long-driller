@@ -38,11 +38,11 @@ def main(argv):
 
   def is_successful(state):
     stdout_output = state.posix.dumps(sys.stdout.fileno())
-    return stdout_output=='Good Job.\n'
+    return stdout_output.find('Good Job.')!=-1 
 
   def should_abort(state):
     stdout_output = state.posix.dumps(sys.stdout.fileno())
-    return stdout_output=='Try again.\n'
+    return stdout_output.find('Try again.')!=-1 
 
   simulation.explore(find=is_successful, avoid=should_abort)
 
@@ -52,7 +52,7 @@ def main(argv):
     # Grab whatever you set aside in the globals dict.
     stored_solutions0 = solution_state.globals['solution0']
     stored_solutions1 = solution_state.globals['solution1']
-    solution = repr(solution_state.se.eval(stored_solutions0))+repr(solution_state.se.eval(stored_solutions1))
+    solution = repr(solution_state.se.eval(stored_solutions0))+' '+repr(solution_state.se.eval(stored_solutions1))
 
     print solution
   else:

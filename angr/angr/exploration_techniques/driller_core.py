@@ -4,6 +4,7 @@ import angr
 import time
 import datetime
 from . import ExplorationTechnique
+import copy
 #long
 #logging.basicConfig(filename='/tmp/example.log', filemode='w', level=logging.DEBUG)
 l = logging.getLogger("angr.exploration_techniques.driller_core")
@@ -45,35 +46,54 @@ class DrillerCore(ExplorationTechnique):
     def ForwardProbe(self, state,log_str):
         steps = 0
         p = angr.Project(self.project.filename)
-        simgr = p.factory.simgr(state, immutable=False, hierarchy=False)
+        
         #l.warning("start ForwardProbe at "+hex(state.addr))
         #l.warning(hex(len(simgr.active)))
-        while len(simgr.active) and steps < 2:
-            prev_addr=simgr.one_active.addr
-            simgr.step()
-            if  len(simgr.active)>0:
-                this_addr=simgr.one_active.addr
-                prev_loc = prev_addr
-                prev_loc = (prev_loc >> 4) ^ (prev_loc << 8)
-                prev_loc &= len(self.fuzz_bitmap) - 1
-                prev_loc = prev_loc >> 1
-                cur_loc = this_addr
-                cur_loc = (cur_loc >> 4) ^ (cur_loc << 8)
-                cur_loc &= len(self.fuzz_bitmap) - 1
-                hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
-                #if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
-                if ((prev_addr,this_addr) not in self.encounters and not hit):
-                    #self.encounters.add((prev_addr,this_addr)) #add to the encounters after
-                    #self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
-                    l.warning('flip : '+log_str+' because found: '+hex(prev_addr)+' --> '+hex(this_addr))
-                    logfile=open('/tmp/probe.txt','a')
-                    cur_time=datetime.datetime.now()
-                    logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
-                    logfile.close()
-                    #time.sleep(10000)
-                    return 1
-                steps += 1
-                #l.warning(hex(steps))
+        prev_states=[state]
+        
+        while steps < 3:
+            prev_addrs=[m.addr for m in prev_states]
+            strmy=[hex(m) for m in prev_addrs]
+            l.warning('prev: '+repr(strmy))
+            for prev_state in prev_states:
+                prev_addr=prev_state.addr
+                simgr = p.factory.simgr(prev_state,save_unsat=True)
+                simgr.step()
+                if prev_addr == 0x400735:
+                    for k,v in simgr.stashes.iteritems():
+                        l.warning(k+' '+repr(v))
+                this_states=simgr.stashes['active']+simgr.stashes['unsat']
+                this_addrs=[m.addr for m in this_states]
+                strmy=[hex(m) for m in this_addrs]
+                l.warning('this: '+repr(strmy))
+                for this_state in this_states:
+                    #state=this_state.copy()
+                    this_addr=this_state.addr
+                    prev_loc = prev_addr
+                    prev_loc = (prev_loc >> 4) ^ (prev_loc << 8)
+                    prev_loc &= len(self.fuzz_bitmap) - 1
+                    prev_loc = prev_loc >> 1
+                    cur_loc = this_addr
+                    cur_loc = (cur_loc >> 4) ^ (cur_loc << 8)
+                    cur_loc &= len(self.fuzz_bitmap) - 1
+                    hit = bool(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) ^ 0xff)
+                    #if (len(simgr._stashes['active']) > 1 or ((prev_addr,this_addr) not in self.encounters and not hit)):
+                    if ((prev_addr,this_addr) not in self.encounters and not hit):
+                        #self.encounters.add((prev_addr,this_addr)) #add to the encounters after
+                        #self.fuzz_bitmap[cur_loc ^ prev_loc] = chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc]) & ~1)
+                        l.warning('flip : '+log_str+' because found: '+hex(prev_addr)+' --> '+hex(this_addr))
+                        logfile=open('/tmp/probe.txt','a')
+                        cur_time=datetime.datetime.now()
+                        logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
+                        logfile.close()
+                        #time.sleep(10000)
+                        return 1
+            prev_states=[]
+            for prev_state in this_states:
+                prev_states.append(prev_state.copy())
+            steps += 1
+            l.warning(str(steps))
+            
         return 0
 
     def step(self, simgr, stash='active', **kwargs):

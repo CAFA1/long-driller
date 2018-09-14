@@ -348,6 +348,9 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
 
             pre_errored = len(self._errored)
             successors = self.step_state(state, successor_func, **run_args)
+            #long
+            #if state.addr==0x400735:
+            #    l.warning(repr(successors))
             if not any(successors.itervalues()) and len(self._errored) == pre_errored:
                 bucket['deadended'].append(state)
                 continue
@@ -363,9 +366,15 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         self._clear_states(stash=stash)
         for to_stash, states in bucket.iteritems():
             self._store_states(to_stash or stash, states)
+            #long
+            #if state.addr==0x400735:
+            #    l.warning(repr(to_stash or stash)+' '+repr(states))
 
         if step_func is not None:
             return step_func(self)
+        #long
+        if state.addr==0x400735:
+            l.warning(repr(self.stashes))
         return self
 
     def step_state(self, state, successor_func=None, **run_args):

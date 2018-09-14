@@ -144,7 +144,7 @@ if __name__ == "__main__":
         inputs_to_drill.append(inputs_to_drill[0] + '\0' * args.length_extension)
 
     for input_to_drill in inputs_to_drill:
-        d = driller.Driller(args.binary_path, input_to_drill, fuzzer_bitmap)
+        d = driller.Driller(args.binary_path, input_to_drill, fuzzer_bitmap) #add bitmap
         count = 0
         for new_input in d.drill_generator():
             id_num = len(os.listdir(driller_queue_dir))

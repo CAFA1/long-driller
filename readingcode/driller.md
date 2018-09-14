@@ -1597,13 +1597,13 @@ def step(self, n=None, selector_func=None, step_func=None, stash='active',
 			continue
 
 		pre_errored = len(self._errored)
-		successors = self.step_state(state, successor_func, **run_args) 真正的执行
+		successors = self.step_state(state, successor_func, **run_args) #liu 真正的执行
 		if not any(successors.itervalues()) and len(self._errored) == pre_errored:
 			bucket['deadended'].append(state)
 			continue
 
 		for to_stash, successor_states in successors.iteritems():
-			bucket[to_stash or stash].extend(successor_states) 将下一步的状态填入bucket
+			bucket[to_stash or stash].extend(successor_states) #liu 将下一步的状态填入bucket
 
 	self._clear_states(stash=stash)
 	for to_stash, states in bucket.iteritems():
