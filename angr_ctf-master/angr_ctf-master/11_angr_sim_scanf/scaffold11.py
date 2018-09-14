@@ -28,21 +28,21 @@ def main(argv):
       # store multiple bitvectors. You can either use a list, tuple, or multiple
       # keys to reference the different bitvectors.
       # (!)
-      self.state.globals['solution0'] = scanf0_address
-      self.state.globals['solution1'] = scanf1_address
+      self.state.globals['solution0'] = scanf0
+      self.state.globals['solution1'] = scanf1
 
-  scanf_symbol = __isoc99_scanf
+  scanf_symbol = '__isoc99_scanf'
   project.hook_symbol(scanf_symbol, ReplacementScanf())
 
   simulation = project.factory.simgr(initial_state)
 
   def is_successful(state):
     stdout_output = state.posix.dumps(sys.stdout.fileno())
-    return ???
+    return stdout_output=='Good Job.\n'
 
   def should_abort(state):
     stdout_output = state.posix.dumps(sys.stdout.fileno())
-    return ???
+    return stdout_output=='Try again.\n'
 
   simulation.explore(find=is_successful, avoid=should_abort)
 
@@ -51,8 +51,8 @@ def main(argv):
 
     # Grab whatever you set aside in the globals dict.
     stored_solutions0 = solution_state.globals['solution0']
-    ...
-    solution = ???
+    stored_solutions1 = solution_state.globals['solution1']
+    solution = repr(solution_state.se.eval(stored_solutions0))+repr(solution_state.se.eval(stored_solutions1))
 
     print solution
   else:
