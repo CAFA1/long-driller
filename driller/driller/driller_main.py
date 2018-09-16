@@ -139,6 +139,7 @@ class Driller(object):
         l.debug("Drilling into %r.", self.input)
         l.debug("Input is %r.", self.input)
 
+
         while simgr.active and simgr.one_active.globals['bb_cnt'] < len(r.trace):
             simgr.step()
 
@@ -151,6 +152,7 @@ class Driller(object):
 
             while simgr.diverted:
                 state = simgr.diverted.pop(0)
+                l.warning('haha')
                 l.debug("Found a diverted state, exploring to some extent.")
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
@@ -173,6 +175,9 @@ class Driller(object):
 
         while len(simgr.active) and accumulated < 1024:
             simgr.step()
+            #long
+            l.warning(str(accumulated))
+            l.warning(repr([hex(m.addr) for m in simgr.stashes['active']]))
             steps += 1
 
             # Dump all inputs.
@@ -183,6 +188,8 @@ class Driller(object):
         for dumpable in simgr.deadended:
             try:
                 if dumpable.satisfiable():
+                    #long
+                    l.warning('output '+dumpable.posix.dumps(1))
                     w = self._writeout(dumpable.history.bbl_addrs[-1], dumpable)
                     if w is not None:
                         yield w
