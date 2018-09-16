@@ -4,11 +4,16 @@
 #include <stdlib.h>
 void cmd1()
 {
-	printf("cmd1\n");
+	printf("first_cmd\n");
 }
 void cmd2()
 {
-	printf("cmd2\n");
+	printf("second_cmd\n");
+}
+
+void cmd3()
+{
+	printf("crash_cmd\n");
 }
 
 
@@ -33,10 +38,10 @@ int main(int argc, char*argv[])
 		cmd1( );
 
 	else if (static_strcmp("second_cmd\n" , user_command ) == 0)
-		cmd2 ( ) ;
+		cmd2( ) ;
 
 	else if (static_strcmp("crash_cmd\n" , user_command ) == 0)
-		abort ( ) ;
+		cmd3( ) ;
 	else
 		printf("no cmd\n");
 	return 0;

@@ -51,7 +51,7 @@ class DrillerCore(ExplorationTechnique):
         #l.warning(hex(len(simgr.active)))
         prev_states=[state]
         
-        while steps < 3:
+        while steps < 4:
             prev_addrs=[m.addr for m in prev_states]
             strmy=[hex(m) for m in prev_addrs]
             l.warning('prev: '+repr(strmy))
@@ -62,7 +62,7 @@ class DrillerCore(ExplorationTechnique):
                 if prev_addr == 0x400735:
                     for k,v in simgr.stashes.iteritems():
                         l.warning(k+' '+repr(v))
-                this_states=simgr.stashes['active']+simgr.stashes['unsat']
+                this_states=simgr.stashes['active']+simgr.stashes['unsat']#long unsat
                 this_addrs=[m.addr for m in this_states]
                 strmy=[hex(m) for m in this_addrs]
                 l.warning('this: '+repr(strmy))

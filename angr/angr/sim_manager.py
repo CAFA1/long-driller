@@ -373,8 +373,8 @@ class SimulationManager(ana.Storable, ImmutabilityMixin):
         if step_func is not None:
             return step_func(self)
         #long
-        if state.addr==0x400735:
-            l.warning(repr(self.stashes))
+        #if state.addr==0x400735:
+        #    l.warning(repr(self.stashes))
         return self
 
     def step_state(self, state, successor_func=None, **run_args):
