@@ -7,4 +7,11 @@ archinfo/
 celery/
 shellphish-qemu/
 test/control_flow/control_dependency
+*.gdb_history
+*/peda-session*
+test/data_flow/in/
+test/data_flow/out/
+test/data_flow/peda-session-afl-fuzz.txt
+test/data_flow/peda-session-afl-qemu-trace.txt
+cgc/
 
