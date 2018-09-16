@@ -6,7 +6,7 @@ from . import ExplorationTechnique
 
 
 l = logging.getLogger("angr.exploration_techniques.driller_core")
-
+l.setLevel(logging.DEBUG)
 
 class DrillerCore(ExplorationTechnique):
     """
