@@ -95,6 +95,10 @@ if __name__ == "__main__":
 
     # start it!
     print "[*] Starting fuzzer..."
+    #long log the cur driller dir name to /tmp/.cur
+    with open('/tmp/.cur','w') as f:
+        f.write(args.work_dir+args.binary.split('/')[-1]+'/sync/driller/queue/')
+
     fuzzer.start()
 
     if args.ipython:

@@ -1,16 +1,88 @@
+from __future__ import absolute_import
+import copy
+import sys
+'''
+old=copy.deepcopy(sys.path)
+#sys.path.insert(0,'/usr/lib/python2.7/')
+sys.path=['/usr/lib/python2.7', '/usr/lib/python2.7/plat-x86_64-linux-gnu', '/usr/lib/python2.7/lib-tk','/usr/local/lib/python2.7/dist-packages/']
+
+
+sys.path=old
+
+print sys_threading.Thread
+'''
 import logging
 from itertools import islice, izip
 import angr
 import time
 import datetime
 from . import ExplorationTechnique
-import copy
-#long
-#logging.basicConfig(filename='/tmp/example.log', filemode='w', level=logging.DEBUG)
+import threading as sys_threading 
+import os
+
 l = logging.getLogger("angr.exploration_techniques.driller_core")
 #long
 l.setLevel(logging.DEBUG)
 
+#long write file into driller directory
+#generated: string
+#to_addr: online expore to addr
+def write_file(generated,to_addr):
+    driller_queue_dir=''
+    with open('/tmp/.cur','r') as f:
+        driller_queue_dir=f.read()
+    
+
+    id_num = len(os.listdir(driller_queue_dir))
+    fuzzer_from = 'online'+hex(to_addr).rstrip('L')
+    filepath = "id:" + ("%d" % id_num).rjust(6, "0") + ",to:" + fuzzer_from
+    filepath = os.path.join(driller_queue_dir, filepath)
+    
+    
+    l.warning("found %d online explore inputs:%s", id_num,repr(generated))
+    
+    #long check diff
+    find_same_flag=0
+    for driller_sample in os.listdir(driller_queue_dir):
+        driller_sample_path=os.path.join(driller_queue_dir, driller_sample)
+        r=open(driller_sample_path,'r')
+        content=r.read().rstrip(b'\0')
+        r.close()
+        #l.waring()
+        if content==generated.rstrip(b'\0'):
+            find_same_flag=1
+            break
+
+    if find_same_flag==0:
+        l.warning('generating '+filepath)
+        myfile=open(filepath,'wb')
+        myfile.write(generated)
+        myfile.close()
+    else:
+        l.warning('the same sample')
+        
+
+
+
+#long online explore thread
+#binary: binary name
+#find_addr: int
+def OnlineExplore(binary,find_addr):  
+    cur_time=datetime.datetime.now()
+    l.warning('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,'begin online explore'))
+    #print 'start online explore thread time:', time.strftime('%H:%M:%S')
+    proj = angr.Project(binary, load_options={"auto_load_libs": False})
+    state1 = proj.factory.entry_state(stdin=angr.SimFile)
+    sm = proj.factory.simulation_manager(state1)
+    sm.explore(find=find_addr) #, avoid=AVOID_ADDR)
+    generated=''
+    for find_state in sm.found:
+        generated = find_state.posix.stdin.load(0, find_state.posix.stdin.size)
+        generated = find_state.se.eval(generated, cast_to=str)
+        write_file(generated,find_addr)
+
+    cur_time=datetime.datetime.now()
+    l.warning('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,'stop online explore')) 
 class DrillerCore(ExplorationTechnique):
     """
     An exploration technique that symbolically follows an input looking for new
@@ -59,9 +131,7 @@ class DrillerCore(ExplorationTechnique):
                 prev_addr=prev_state.addr
                 simgr = p.factory.simgr(prev_state,save_unsat=True)
                 simgr.step()
-                if prev_addr == 0x400735:
-                    for k,v in simgr.stashes.iteritems():
-                        l.warning(k+' '+repr(v))
+                
                 this_states=simgr.stashes['active']+simgr.stashes['unsat']#long unsat
                 this_addrs=[m.addr for m in this_states]
                 strmy=[hex(m) for m in this_addrs]
@@ -86,6 +156,12 @@ class DrillerCore(ExplorationTechnique):
                         cur_time=datetime.datetime.now()
                         logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
                         logfile.close()
+                        #long online thread
+                        
+                        thread1 = sys_threading.Thread(target = OnlineExplore,args=[self.project.filename,this_addr])  
+                        thread1.setDaemon(True)
+                        thread1.start()
+                        thread1.join(600)
                         #time.sleep(10000)
                         return 1
             prev_states=[]

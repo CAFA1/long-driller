@@ -157,7 +157,7 @@ class Driller(object):
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
                     yield w
-                #long disable
+                #long disable _symbolic_explorer_stub
                 #for i in self._symbolic_explorer_stub(state):
                 #    yield i
         #long write bitmap
