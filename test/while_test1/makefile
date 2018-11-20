@@ -1,2 +1,2 @@
 all:
-	gcc -g -o vul_while vul_while.c
+	gcc -g -o while_test while_test.c

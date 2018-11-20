@@ -15,7 +15,8 @@
 	- [12. binaries](#12-binaries)
 - [cgc samples](#cgc-samples)
 - [test](#test)
-	- [1. control_dependency our](#1-control_dependency-our)
+	- [1. control_dependency](#1-control_dependency)
+	- [2. while_test](#2-while_test)
 	- [2 shellphuzz two branch](#2-shellphuzz-two-branch)
 
 <!-- /TOC -->
@@ -84,9 +85,12 @@
 	http://www.lungetech.com/cgc-corpus/cwe/cfe/
 	
 # test
-## 1. control_dependency our
-	cd test
-	python driller_explore.py -d 1 control_flow/control_dependency
+## 1. control_dependency 
+	./shellphuzz -c 1 -d 1 -f 8 --no-dictionary ../test/control_flow/control_dependency  
+
+## 2. while_test
+	./shellphuzz -c 1 -d 1 -f 8 --no-dictionary ../test/while_test/vul_while  
+
 
 ## 2 shellphuzz two branch
 	./shellphuzz -c 1 -d 1 -f 6 --no-dictionary ../test/control_flow/control_dependency  

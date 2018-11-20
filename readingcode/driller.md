@@ -8,7 +8,7 @@
 		- [28.3.1 tracer实验（no）](#2831-tracer实验no)
 		- [28.3.2 angr hook实验（no）](#2832-angr-hook实验no)
 		- [28.3.3 preconstrain_file 将符号文件具体化，往状态约束里面添加这个约束](#2833-preconstrain_file-将符号文件具体化往状态约束里面添加这个约束)
-		- [28.3.4 _writeout 记录新发现的路径以及求解的输入](#2834-_writeout-记录新发现的路径以及求解的输入)
+		- [28.3.4 _writeout 记录新发现的路径以及求解的输入 driller_main.py](#2834-_writeout-记录新发现的路径以及求解的输入-driller_mainpy)
 		- [28.3.5 关键在于driller core的step了，怎么找到的diverted。](#2835-关键在于driller-core的step了怎么找到的diverted)
 			- [28.3.5.1 ‘missed’ stash中存储的是trace中没有遍历的分支](#28351-missed-stash中存储的是trace中没有遍历的分支)
 			- [28.3.5.2 remove_preconstraints 清除原来的输入约束](#28352-remove_preconstraints-清除原来的输入约束)
@@ -314,7 +314,7 @@ def preconstrain(self, value, variable):
 		if not self.state.satisfiable():
 			l.warning("State went unsat while adding preconstraints")
 ```
-### 28.3.4 _writeout 记录新发现的路径以及求解的输入
+### 28.3.4 _writeout 记录新发现的路径以及求解的输入 driller_main.py
 ```python
 l.debug("Found a diverted state, exploring to some extent.")
 w = self._writeout(state.history.bbl_addrs[-1], state)
@@ -1803,12 +1803,12 @@ def process(self, state, *args, **kwargs):
 	new_state.history.recent_bbl_addrs.append(addr)
 	new_state.scratch.executed_pages_set = {addr & ~0xFFF}
 
-	successors = SimSuccessors(addr, old_state) 类构造
+	successors = SimSuccessors(addr, old_state) #类构造
 
 	new_state._inspect('engine_process', when=BP_BEFORE, sim_engine=self, sim_successors=successors, address=addr)
 	successors = new_state._inspect_getattr('sim_successors', successors)
 	try:
-		self._process(new_state, successors, *args, **kwargs) 执行
+		self._process(new_state, successors, *args, **kwargs) #执行
 	except SimException:
 		if o.EXCEPTION_HANDLING not in old_state.options:
 			raise
@@ -1854,7 +1854,7 @@ def _process(self, state, successors, irsb=None, skip_stmts=0, last_stmt=9999999
 				num_inst=num_inst,
 				traceflags=traceflags,
 				thumb=thumb,
-				opt_level=opt_level) 提取中间语言
+				opt_level=opt_level) #liu提取中间语言
 
 		if irsb.size == 0:
 			if irsb.jumpkind == 'Ijk_NoDecode' and not state.project.is_hooked(irsb.addr):
@@ -1880,7 +1880,7 @@ def _process(self, state, successors, irsb=None, skip_stmts=0, last_stmt=9999999
 		state.scratch.irsb = irsb
 
 		try:
-			self._handle_irsb(state, successors, irsb, skip_stmts, last_stmt, whitelist) 符号执行中间语言
+			self._handle_irsb(state, successors, irsb, skip_stmts, last_stmt, whitelist) #liu符号执行中间语言
 		except SimReliftException as e:
 			state = e.state
 			if insn_bytes is not None:
@@ -1937,7 +1937,7 @@ def _handle_irsb(self, state, successors, irsb, skip_stmts, last_stmt, whitelist
 	# set the current basic block address that's being processed
 	state.scratch.bbl_addr = irsb.addr
 
-	for stmt_idx, stmt in enumerate(ss): 每一条语句遍历
+	for stmt_idx, stmt in enumerate(ss): #每一条语句遍历
 		if isinstance(stmt, pyvex.IRStmt.IMark):
 			insn_addrs.append(stmt.addr + stmt.delta)
 
@@ -1954,7 +1954,7 @@ def _handle_irsb(self, state, successors, irsb, skip_stmts, last_stmt, whitelist
 		try:
 			state.scratch.stmt_idx = stmt_idx
 			state._inspect('statement', BP_BEFORE, statement=stmt_idx)
-			self._handle_statement(state, successors, stmt) 执行这条语句
+			self._handle_statement(state, successors, stmt) #liu 执行这条语句
 			state._inspect('statement', BP_AFTER)
 		except UnsupportedDirtyError:
 			if o.BYPASS_UNSUPPORTED_IRDIRTY not in state.options:
@@ -1978,11 +1978,11 @@ def _handle_irsb(self, state, successors, irsb, skip_stmts, last_stmt, whitelist
 	# then this block does not have a default exit. This can happen if
 	# the block has an unavoidable "conditional" exit or if there's a legitimate
 	# error in the simulation
-	if has_default_exit: 执行结束
+	if has_default_exit: #执行结束
 		l.debug("%s adding default exit.", self)
 
 		try:
-			next_expr = translate_expr(irsb.next, state) 下一个bbl地址
+			next_expr = translate_expr(irsb.next, state) #liu 下一个bbl地址
 			state.history.extend_actions(next_expr.actions)
 
 			if o.TRACK_JMP_ACTIONS in state.options:
@@ -1991,8 +1991,8 @@ def _handle_irsb(self, state, successors, irsb, skip_stmts, last_stmt, whitelist
 					reg_deps=next_expr.reg_deps(), tmp_deps=next_expr.tmp_deps()
 				)
 				state.history.add_action(SimActionExit(state, target_ao, exit_type=SimActionExit.DEFAULT))
-			successors.add_successor(state, next_expr.expr, state.scratch.guard, irsb.jumpkind,
-										exit_stmt_idx='default', exit_ins_addr=state.scratch.ins_addr) 将下一个跳转地址添加到successor中
+			successors.add_successor(state,  .expr, state.scratch.guard, irsb.jumpkind,
+										exit_stmt_idx='default', exit_ins_addr=state.scratch.ins_addr) #liu 将下一个跳转地址添加到successor中
 
 		except KeyError:
 			# For some reason, the temporary variable that the successor relies on does not exist.
@@ -2062,23 +2062,23 @@ def _handle_statement(self, state, successors, stmt):
 		state._inspect('instruction', BP_BEFORE, instruction=ins_addr)
 
 	# process it!
-	s_stmt = translate_stmt(stmt, state) #解析每条语句
+	s_stmt = translate_stmt(stmt, state) #liu 解析每条语句
 	if s_stmt is not None:
 		state.history.extend_actions(s_stmt.actions)
 
 	# for the exits, put *not* taking the exit on the list of constraints so
 	# that we can continue on. Otherwise, add the constraints
-	if type(stmt) == pyvex.IRStmt.Exit: 对于结束的语句，比如jz
+	if type(stmt) == pyvex.IRStmt.Exit: #liu 对于结束的语句，比如jz
 		l.debug("%s adding conditional exit", self)
 
 		# Produce our successor state!
 		# Let SimSuccessors.add_successor handle the nitty gritty details
 		exit_state = state.copy()
 		successors.add_successor(exit_state, s_stmt.target, s_stmt.guard, s_stmt.jumpkind,
-									exit_stmt_idx=state.scratch.stmt_idx, exit_ins_addr=state.scratch.ins_addr) 添加后继，像jz这样的，有一个满足，一个不满足，或者两个都可满足。返回到has_default_exit正好相反。
+									exit_stmt_idx=state.scratch.stmt_idx, exit_ins_addr=state.scratch.ins_addr) #liu the second chance to add successor 添加后继，像jz这样的，有一个满足，一个不满足，或者两个都可满足。返回到has_default_exit正好相反。
 
 		# Do our bookkeeping on the continuing state
-		cont_condition = claripy.Not(s_stmt.guard) #约束取反
+		cont_condition = claripy.Not(s_stmt.guard) #liu 约束取反
 		state.add_constraints(cont_condition)
 		state.scratch.guard = claripy.And(state.scratch.guard, cont_condition)
 
@@ -2143,7 +2143,7 @@ def add_successor(self, state, target, guard, jumpkind, add_guard=True, exit_stm
 	if state.history.jumpkind == 'Ijk_SigFPE_IntDiv' and o.PRODUCE_ZERODIV_SUCCESSORS not in state.options:
 		return
 
-	self._categorize_successor(state) 分类添加到successor lists
+	self._categorize_successor(state) #liu 分类添加到successor lists
 	state._inspect('exit', BP_AFTER, exit_target=target, exit_guard=guard, exit_jumpkind=jumpkind)
 	state.inspect.downsize()
 ```
@@ -2215,7 +2215,7 @@ def _categorize_successor(self, state):
 			if state.se.satisfiable():
 				raise Exception('WTF')
 		self.unsat_successors.append(state)
-	elif not state.scratch.guard.symbolic and state.se.is_false(state.scratch.guard): 评判标准guard是否满足，guard为常数，且为恒假，state.scratch.guard是不断累积的，见31.1.2.6.1 _handle_statement最后state.scratch.guard = claripy.And(state.scratch.guard, cont_condition)，在改bbl process前设置为true，见engines/vex/engine.py _process函数，即31.1.2.5，state.scratch.guard = claripy.true
+	elif not state.scratch.guard.symbolic and state.se.is_false(state.scratch.guard): #liu 评判标准guard是否满足，guard为常数，且为恒假，state.scratch.guard是不断累积的，见31.1.2.6.1 _handle_statement最后state.scratch.guard = claripy.And(state.scratch.guard, cont_condition)，在改bbl process前设置为true，见engines/vex/engine.py _process函数，即31.1.2.5，state.scratch.guard = claripy.true
 		self.unsat_successors.append(state) 
 	elif o.LAZY_SOLVES not in state.options and not state.satisfiable():
 		self.unsat_successors.append(state)

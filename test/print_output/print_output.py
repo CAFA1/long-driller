@@ -16,23 +16,24 @@ myoutput = open('/tmp/myoutput.txt', 'a')
 output_dict=dict()
 for file1 in file_names:
 	print file1
-	myoutput.write('\n'+file1+'\n')
-	myinput = open(file1,'r')
-	p = subprocess.Popen(binary, stdin=myinput, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-	out,error = p.communicate()
-	myoutput.write(out)
-	if out not in output_dict:
-		output_dict[out]=file1
-	myoutput.flush()
+	try:
+		myoutput.write('\n'+file1+'\n')
+		myinput = open(file1,'r')
+		p = subprocess.Popen(binary, stdin=myinput, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+		out,error = p.communicate()
+		myoutput.write(out)
+		if out not in output_dict:
+			output_dict[out]=file1
+		myoutput.flush()
+	except:
+		pass
 myoutput.close()
 print 'the result!!!!!!!!!!!!'
-myfile=open('/tmp/myoutput.txt','r')
-for line in myfile.readlines():
-	#print repr(line)
-	pass
-myfile.close()
 
+i=0
 for k,v in output_dict.iteritems():
+	i=i+1
+	print '\n\n'+str(i)
 	print k
 	print v
 

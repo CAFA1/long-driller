@@ -118,11 +118,8 @@ class DrillerCore(ExplorationTechnique):
     def ForwardProbe(self, state,log_str):
         steps = 0
         p = angr.Project(self.project.filename)
-        
         #l.warning("start ForwardProbe at "+hex(state.addr))
-        #l.warning(hex(len(simgr.active)))
         prev_states=[state]
-        
         while steps < 4:
             prev_addrs=[m.addr for m in prev_states]
             strmy=[hex(m) for m in prev_addrs]
@@ -131,8 +128,9 @@ class DrillerCore(ExplorationTechnique):
                 prev_addr=prev_state.addr
                 simgr = p.factory.simgr(prev_state,save_unsat=True)
                 simgr.step()
-                
-                this_states=simgr.stashes['active']+simgr.stashes['unsat']#long unsat
+                this_states=simgr.stashes['active'] #+simgr.stashes['unsat']#long unsat
+                #l.warning('active: '+repr(simgr.stashes['active']))
+                #l.warning('unsat: '+repr(simgr.stashes['unsat']))
                 this_addrs=[m.addr for m in this_states]
                 strmy=[hex(m) for m in this_addrs]
                 l.warning('this: '+repr(strmy))
@@ -156,8 +154,7 @@ class DrillerCore(ExplorationTechnique):
                         cur_time=datetime.datetime.now()
                         logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
                         logfile.close()
-                        #long online thread
-                        
+                        #long online symbolic thread to explore this address
                         thread1 = sys_threading.Thread(target = OnlineExplore,args=[self.project.filename,this_addr])  
                         thread1.setDaemon(True)
                         thread1.start()
@@ -206,14 +203,11 @@ class DrillerCore(ExplorationTechnique):
                         state1.preconstrainer.remove_preconstraints()
                         if state1.satisfiable():
                             if(self.ForwardProbe(state1,log_str)):
-                            #l.warning('return 1')
-                            #l.warning(hex(state.addr))
                                 diverted_flag=1
                     else:
                         diverted_flag=1
                     if(diverted_flag==1):
                         state.preconstrainer.remove_preconstraints()
-
                         if state.satisfiable():
                             # A completely new state transition.
                             #l.debug("Found a completely new transition, putting into 'diverted' stash.")
@@ -223,20 +217,14 @@ class DrillerCore(ExplorationTechnique):
                             self.encounters.add(transition)
                             #long update bitmap # no need update;relay on the fuzzer to update
                             #self.fuzz_bitmap[cur_loc ^ prev_loc]=chr(ord(self.fuzz_bitmap[cur_loc ^ prev_loc])&~1)
-
                         else:
-                            #l.debug("State at %#x is not satisfiable.", transition[1])
+                            l.debug("State at %#x is not satisfiable.", transition[1])
                             pass
                     else:
-                        #l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                        l.debug("%#x -> %#x transition has already been encountered even after ForwardProbe.", transition[0], transition[1])
                         pass
 
-                elif self._has_false(state):
-                    #l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
-                    pass
-
-                else:
-                    l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                
 
         return simgr
 

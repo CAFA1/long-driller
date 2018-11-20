@@ -14,7 +14,6 @@ int check(char*x,int depth)
         return count;
     }
 }
-
 int main(int argc, char*argv[])
 {
 	char y[104];
@@ -28,7 +27,7 @@ int main(int argc, char*argv[])
 	    printf("check pass\n");
 	    if(magic==0x42d614f8)
 	    {
-	        printf("magic pass\n");//*(int*)0=1;
+	        printf("magic pass\n");
 	    }
 	}
 }

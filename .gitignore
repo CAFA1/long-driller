@@ -17,3 +17,6 @@ cgc/.vagrant/
 */.gdb_history
 test/read_two/two_read
 */hello
+*.input
+test/read_two/read_two
+test/while_test1/while_test

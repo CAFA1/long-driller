@@ -22,11 +22,11 @@ int main(int argc, char*argv[])
 	int magic;
 	read(0,y,104);
 	memcpy(x,y,100);
-	memcpy((char*)&magic,(char*)&x[100],4);
-	if(check(x,0)==25)
+	memcpy((char*)&magic,(char*)&x,4);
+	if(check(x,0)==5)
 	{
 	    printf("check pass\n");
-	    if(magic==0x42d614f8)
+	    if(magic==0x41424344)
 	    {
 	        printf("magic pass\n");//*(int*)0=1;
 	    }

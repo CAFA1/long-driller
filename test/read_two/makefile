@@ -1,5 +1,5 @@
 all:
-	gcc -g -o two_read two_read.c
+	gcc -g -o read_two read_two.c
 
 
 

@@ -5,7 +5,7 @@ import hashlib
 import resource
 import cPickle as pickle
 import logging
-
+import subprocess
 import angr
 import tracer
 from . import config
@@ -250,7 +250,7 @@ class Driller(object):
         #print repr(state.se.constraints)
         generated = state.se.eval(generated, cast_to=str)
         #print '\ngenerated:'+generated+'\n'
-
+        
         key = (len(generated), prev_addr, state.addr)
 
         # Checks here to see if the generation is worth writing to disk.
@@ -276,7 +276,17 @@ class Driller(object):
             l.debug("Generated: %s", generated.encode('hex'))
             #long
             l.debug("Generated: %s", repr(generated))
-
+            #long print out the output of this sample
+            try:
+                tmpfile=open('/tmp/tmp.txt','w')
+                tmpfile.write(generated)
+                tmpfile.close()
+                tmpfile=open('/tmp/tmp.txt','r')
+                p = subprocess.Popen(self.binary, stdin=tmpfile, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+                out,error = p.communicate()
+                l.warning('out: '+out)
+            except:
+                pass
         return (key, generated)
 
     def _write_debug_info(self):
