@@ -41,7 +41,7 @@ for line in plot_file_probe.readlines():
 
 plt.title('')
 plt.plot(time_list_probe, trans_list_probe, color='green', label='ForwardProbe')
-plt.plot(time_list_origin, trans_list_origin, color='red', label='DrillerCore')
+plt.plot(time_list_origin, trans_list_origin, color='red', linestyle='--',label='DrillerCore')
 #plt.plot(sub_axix, test_acys, color='red', label='testing accuracy')
 #plt.plot(x_axix, train_pn_dis,  color='skyblue', label='PN distance')
 plt.legend(loc=2) 
