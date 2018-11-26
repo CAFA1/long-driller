@@ -20,3 +20,4 @@ test/read_two/two_read
 *.input
 test/read_two/read_two
 test/while_test1/while_test
+test/driller_sample/driller_sample
