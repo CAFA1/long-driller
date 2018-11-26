@@ -124,7 +124,7 @@ class DrillerCore(ExplorationTechnique):
             prev_addrs=[m.addr for m in prev_states]
             strmy=[hex(m) for m in prev_addrs]
             l.warning('prev: '+repr(strmy))
-            prev_states1=[]
+            prev_states1=set()
             for prev_state in prev_states:
                 prev_addr=prev_state.addr
                 simgr = p.factory.simgr(prev_state,save_unsat=True)
@@ -137,7 +137,7 @@ class DrillerCore(ExplorationTechnique):
                 l.warning('this: '+repr(strmy))
                 for this_state in this_states:
                     #state=this_state.copy()
-                    prev_states1.append(this_state.copy())
+                    prev_states1.add(this_state.copy())
                     this_addr=this_state.addr
                     prev_loc = prev_addr
                     prev_loc = (prev_loc >> 4) ^ (prev_loc << 8)
@@ -163,6 +163,7 @@ class DrillerCore(ExplorationTechnique):
                         thread1.join(600)
                         #time.sleep(10000)
                         return 1
+            prev_states=[]
             for prev_state in prev_states1:
                 prev_states.append(prev_state.copy())
             steps += 1
@@ -212,7 +213,7 @@ class DrillerCore(ExplorationTechnique):
                         if state.satisfiable():
                             # A completely new state transition.
                             #l.debug("Found a completely new transition, putting into 'diverted' stash.")
-                            l.debug(repr(state.se.constraints))
+                            #l.debug(repr(state.se.constraints))
                             l.debug("Found diverted transition %#x -> %#x.", transition[0], transition[1])
                             simgr.stashes['diverted'].append(state)
                             self.encounters.add(transition)
