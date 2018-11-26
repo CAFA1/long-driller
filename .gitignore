@@ -14,4 +14,4 @@ test/data_flow/out/
 test/data_flow/peda-session-afl-fuzz.txt
 test/data_flow/peda-session-afl-qemu-trace.txt
 cgc/
-
+*.input
