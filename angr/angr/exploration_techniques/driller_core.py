@@ -129,7 +129,7 @@ class DrillerCore(ExplorationTechnique):
                 prev_addr=prev_state.addr
                 simgr = p.factory.simgr(prev_state,save_unsat=True)
                 simgr.step()
-                this_states=simgr.stashes['active'] #+simgr.stashes['unsat']#long unsat
+                this_states=simgr.stashes['active'] +simgr.stashes['unsat']#long unsat
                 #l.warning('active: '+repr(simgr.stashes['active']))
                 #l.warning('unsat: '+repr(simgr.stashes['unsat']))
                 this_addrs=[m.addr for m in this_states]

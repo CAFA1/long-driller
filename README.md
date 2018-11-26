@@ -15,9 +15,9 @@
 	- [12. binaries](#12-binaries)
 - [cgc samples](#cgc-samples)
 - [test](#test)
-	- [1. control_dependency](#1-control_dependency)
-	- [2. while_test](#2-while_test)
-	- [2 shellphuzz two branch](#2-shellphuzz-two-branch)
+	- [1. driller_sample](#1-driller_sample)
+	- [2. print_out](#2-print_out)
+	- [3. python_plot](#3-python_plot)
 
 <!-- /TOC -->
 
@@ -85,13 +85,12 @@
 	http://www.lungetech.com/cgc-corpus/cwe/cfe/
 	
 # test
-## 1. control_dependency 
-	./shellphuzz -c 1 -d 1 -f 8 --no-dictionary ../test/control_flow/control_dependency  
-
-## 2. while_test
-	./shellphuzz -c 1 -d 1 -f 8 --no-dictionary ../test/while_test/vul_while  
-
-
-## 2 shellphuzz two branch
-	./shellphuzz -c 1 -d 1 -f 6 --no-dictionary ../test/control_flow/control_dependency  
-	./shellphuzz -c 1 -d 1 -f 6 /vagrant/samples-master/examples/CADET_00001/bin/CADET_00001  
+## 1. driller_sample
+	cd fuzzer
+	./shellphuzz -c 1 -d 1 -f 8 --no-dictionary ../test/driller_sample/driller_sample
+## 2. print_out
+	cd test/print_output
+	python print_output.py ../driller_sample/driller_sample /dev/shm/work/driller_sample/sync/driller/queue/
+## 3. python_plot
+	python python_plot.py /dev/shm/work/driller_sample/fuzzer-master.log
+	
