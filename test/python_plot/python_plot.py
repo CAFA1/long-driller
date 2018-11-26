@@ -4,6 +4,11 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import sys
 import re
+import matplotlib as mpl
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+
+custom_font = mpl.font_manager.FontProperties(fname=u'微软雅黑.ttf')
+
 plot_file_origin=open('driller_sample_origin/fuzzer-master.log','r')
 plot_file_probe=open('driller_sample_probe/fuzzer-master.log','r')
 time_list_origin=[]
@@ -40,7 +45,7 @@ plt.plot(time_list_origin, trans_list_origin, color='red', label='DrillerCore')
 #plt.plot(sub_axix, test_acys, color='red', label='testing accuracy')
 #plt.plot(x_axix, train_pn_dis,  color='skyblue', label='PN distance')
 plt.legend(loc=2) 
-plt.xlabel(u'时间（秒）')
-plt.ylabel(u'状态转移数')
+plt.xlabel(u'时间（秒）',fontproperties=custom_font)
+plt.ylabel(u'状态转移数',fontproperties=custom_font)
 plt.savefig('driller_sample.png')
 plt.show()
