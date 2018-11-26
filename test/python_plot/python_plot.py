@@ -4,10 +4,11 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import sys
 import re
-plot_file1=open(sys.argv[1],'r')
-time_list=[]
-trans_list=[]
-for line in plot_file1.readlines():
+plot_file_origin=open('driller_sample_origin/fuzzer-master.log','r')
+plot_file_probe=open('driller_sample_probe/fuzzer-master.log','r')
+time_list_origin=[]
+trans_list_origin=[]
+for line in plot_file_origin.readlines():
 	match=re.search(".*0m(?P<days>.*) days, (?P<hours>.*) hrs, (?P<mins>.*) min, (?P<secs>.*) sec,.*total, (?P<trans>.*) transitions,",line)
 	if match:
 		days=int(match.group('days'),10)
@@ -16,15 +17,30 @@ for line in plot_file1.readlines():
 		secs=int(match.group('secs'),10)
 		trans=int(match.group('trans'),10)
 		time=secs+mins*60+hours*60*60
-		time_list.append(time)
-		trans_list.append(trans)
+		time_list_origin.append(time)
+		trans_list_origin.append(trans)
+time_list_probe=[]
+trans_list_probe=[]
+for line in plot_file_probe.readlines():
+	match=re.search(".*0m(?P<days>.*) days, (?P<hours>.*) hrs, (?P<mins>.*) min, (?P<secs>.*) sec,.*total, (?P<trans>.*) transitions,",line)
+	if match:
+		days=int(match.group('days'),10)
+		hours=int(match.group('hours'),10)
+		mins=int(match.group('mins'),10)
+		secs=int(match.group('secs'),10)
+		trans=int(match.group('trans'),10)
+		time=secs+mins*60+hours*60*60
+		time_list_probe.append(time)
+		trans_list_probe.append(trans)
 
 
-plt.title('Coverage Graph')
-plt.plot(time_list, trans_list, color='green', label='Coverage Graph')
+plt.title('')
+plt.plot(time_list_probe, trans_list_probe, color='green', label='ForwardProbe')
+plt.plot(time_list_origin, trans_list_origin, color='red', label='DrillerCore')
 #plt.plot(sub_axix, test_acys, color='red', label='testing accuracy')
 #plt.plot(x_axix, train_pn_dis,  color='skyblue', label='PN distance')
-plt.legend() 
-plt.xlabel('Time(s)')
-plt.ylabel('Transitions')
+plt.legend(loc=2) 
+plt.xlabel(u'时间（秒）')
+plt.ylabel(u'状态转移数')
+plt.savefig('driller_sample.png')
 plt.show()
