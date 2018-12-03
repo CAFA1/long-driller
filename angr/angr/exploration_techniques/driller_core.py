@@ -120,7 +120,7 @@ class DrillerCore(ExplorationTechnique):
         p = angr.Project(self.project.filename)
         #l.warning("start ForwardProbe at "+hex(state.addr))
         prev_states=[state]
-        while steps < 4:
+        while steps < 3:
             prev_addrs=[m.addr for m in prev_states]
             strmy=[hex(m) for m in prev_addrs]
             l.warning('prev: '+repr(strmy))

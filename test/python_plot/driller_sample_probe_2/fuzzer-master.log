@@ -1,0 +1,1308 @@
+[0;36mafl-fuzz [1;97m2.52b[0m by <lcamtuf@google.com>
+[1;92m[+] [0mLooks like we're not running on a tty, so I'll be a bit less verbose.[0m
+[1;92m[+] [0mYou have 2 CPU cores and 3 runnable tasks (utilization: 150%).[0m
+[1;94m[*] [0mChecking CPU core loadout...[0m
+[1;92m[+] [0mFound a free CPU core, binding to #0.[0m
+[1;94m[*] [0mChecking core_pattern...[0m
+[1;94m[*] [0mSetting up output directories...[0m
+[1;94m[*] [0mScanning '/dev/shm/work/driller_sample/input'...[0m
+[1;92m[+] [0mNo auto-generated dictionary tokens to reuse.[0m
+[1;94m[*] [0mCreating hard links for all input files...[0m
+[1;94m[*] [0mValidating target binary...[0m
+[1;94m[*] [0mAttempting dry run with 'id:000000,orig:seed-0'...[0m
+[1;94m[*] [0mSpinning up the fork server...[0m
+[1;92m[+] [0mAll right - fork server is up.[0m
+[1;90m    len = 4, map size = 37, exec speed = 6224 us
+[0m[1;92m[+] [0mAll test cases processed.[0m
+
+[1;92m[+] [0mHere are some useful stats:
+
+[1;90m    Test case count : [0m1 favored, 0 variable, 1 total
+[1;90m       Bitmap range : [0m37 to 37 bits (average: 37.00 bits)
+[1;90m        Exec timing : [0m6224 to 6224 us (average: 6224 us)
+[0m
+[1;94m[*] [0mNo -t option specified, so I'll use exec timeout of 40 ms.[0m
+[1;92m[+] [0mAll set and ready to roll![0m
+[1;94m[*] [0mEntering queue cycle 1.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 0 sec,Fuzzing test case #0 (1 total, 37 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 2 sec,Fuzzing test case #1 (2 total, 39 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 4 sec,Fuzzing test case #2 (3 total, 41 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 7 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 2.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 10 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 10 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 11 sec,Fuzzing test case #2 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 11 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 3.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 12 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 12 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 13 sec,Fuzzing test case #2 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 14 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 4.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 16 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 16 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 17 sec,Fuzzing test case #2 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 18 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 5.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 20 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 21 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 22 sec,Fuzzing test case #2 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 23 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 6.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 25 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 25 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 26 sec,Fuzzing test case #2 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 27 sec,Fuzzing test case #3 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 7.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 29 sec,Fuzzing test case #0 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 30 sec,Fuzzing test case #1 (4 total, 43 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 31 sec,Fuzzing test case #4 (5 total, 56 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 41 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 8.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 50 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 50 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 51 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 53 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 9.[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 55 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 55 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 56 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 57 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 58 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 0 min, 59 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 10.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 0 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 1 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 2 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 2 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 3 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 11.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 5 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 5 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 6 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 7 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 8 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 9 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 12.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 9 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 10 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 11 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 12 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 13 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 13.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 14 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 14 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 15 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 16 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 17 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 17 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 14.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 19 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 20 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 21 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 22 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 15.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 22 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 23 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 23 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 24 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 25 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 26 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 16.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 26 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 27 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 27 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 28 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 30 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 17.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 31 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 31 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 32 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 32 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 33 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 34 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 18.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 35 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 35 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 36 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 36 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 38 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 19.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 39 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 39 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 40 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 40 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 41 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 42 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 20.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 42 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 43 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 44 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 44 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 45 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 46 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 21.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 46 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 48 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 48 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 50 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 50 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 22.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 51 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 53 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 23.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 55 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 55 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 56 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 57 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 58 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 58 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 24.[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 59 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 1 min, 59 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 0 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 1 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 2 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 2 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 25.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 3 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 3 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 4 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 5 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 6 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 6 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 26.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 7 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 7 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 8 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 9 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 10 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 11 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 27.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 11 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 12 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 12 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 13 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 14 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 14 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 28.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 15 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 15 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 16 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 17 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 18 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 19 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 29.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 19 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 20 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 20 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 21 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 22 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 23 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 30.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 24 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 24 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 26 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 27 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 31.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 27 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 28 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 28 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 29 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 30 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 32.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 31 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 32 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 32 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 33 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 35 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 35 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 33.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 36 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 37 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 38 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 39 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 40 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 40 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 34.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 41 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 41 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 42 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 42 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 44 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 35.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 45 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 45 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 46 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 47 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 48 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 48 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 36.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 49 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 49 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 50 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 51 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 55 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 37.[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 56 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 2 min, 57 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 0 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 1 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 4 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 6 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 38.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 7 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 8 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 8 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 9 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 10 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 10 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 39.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 11 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 11 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 12 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 13 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 14 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 14 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 40.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 15 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 15 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 16 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 16 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 17 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 18 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 41.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 19 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 20 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 20 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 21 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 22 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 42.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 22 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 23 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 23 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 24 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 25 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 26 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 43.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 26 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 26 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 27 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 28 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 29 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 29 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 44.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 30 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 30 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 31 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 32 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 33 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 33 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 45.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 34 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 34 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 35 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 36 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 37 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 37 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 46.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 38 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 38 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 39 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 40 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 41 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 41 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 47.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 42 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 42 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 43 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 44 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 45 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 45 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 48.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 46 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 47 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 48 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 49 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 50 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 49.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 51 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 53 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 55 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 55 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 50.[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 56 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 57 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 58 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 3 min, 59 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 1 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 51.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 1 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 2 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 2 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 3 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 4 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 5 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 52.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 5 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 6 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 6 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 7 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 8 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 9 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 53.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 9 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 10 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 10 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 12 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 13 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 54.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 13 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 14 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 14 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 15 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 17 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 17 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 55.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 19 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 20 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 21 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 22 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 23 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 56.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 24 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 24 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 26 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 26 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 57.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 27 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 27 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 28 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 29 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 31 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 58.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 31 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 32 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 33 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 35 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 39 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 40 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 59.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 42 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 43 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 45 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 47 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 50 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 50 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 60.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 51 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 53 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 61.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 55 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 55 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 56 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 56 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 57 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 58 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 62.[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 59 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 4 min, 59 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 0 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 0 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 1 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 2 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 63.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 2 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 3 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 3 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 4 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 5 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 6 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 64.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 6 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 7 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 7 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 8 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 9 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 10 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 65.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 10 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 11 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 12 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 12 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 13 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 14 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 66.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 14 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 15 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 15 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 16 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 17 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 17 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 67.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 19 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 20 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 21 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 21 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 68.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 22 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 22 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 23 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 24 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 25 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 25 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 69.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 26 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 26 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 27 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 27 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 29 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 29 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 70.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 30 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 30 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 31 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 32 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 33 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 34 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 71.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 34 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 35 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 35 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 36 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 37 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 72.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 38 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 38 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 39 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 40 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 41 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 42 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 73.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 42 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 42 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 43 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 44 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 45 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 45 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 74.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 46 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 46 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 47 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 48 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 49 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 49 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 75.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 50 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 50 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 51 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 52 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 53 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 76.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 53 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 54 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 55 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 56 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 57 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 57 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 77.[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 58 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 58 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 5 min, 59 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 0 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 1 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 78.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 1 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 2 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 2 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 3 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 4 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 79.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 5 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 5 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 6 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 7 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 8 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 8 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 80.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 9 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 9 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 10 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 12 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 12 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 81.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 13 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 13 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 14 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 14 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 15 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 16 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 82.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 16 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 17 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 17 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 18 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 19 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 20 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 83.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 20 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 21 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 21 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 22 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 23 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 24 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 84.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 24 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 25 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 25 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 26 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 27 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 27 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 85.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 28 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 28 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 29 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 30 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 31 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 31 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 86.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 32 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 32 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 33 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 33 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 35 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 35 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 87.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 36 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 36 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 37 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 37 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 38 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 39 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 88.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 39 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 40 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 40 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 41 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 42 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 43 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 89.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 43 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 44 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 44 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 45 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 46 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 47 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 90.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 47 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 48 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 48 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 49 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 50 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 51 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 91.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 51 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 92.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 55 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 55 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 56 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 56 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 57 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 58 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 93.[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 58 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 59 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 6 min, 59 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 0 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 1 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 1 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 94.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 2 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 2 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 3 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 4 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 5 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 5 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 95.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 6 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 6 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 7 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 7 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 9 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 9 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 96.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 10 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 10 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 11 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 12 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 13 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 97.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 14 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 14 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 15 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 15 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 16 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 17 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 98.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 19 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 19 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 20 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 21 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 99.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 22 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 22 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 23 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 23 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 24 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 25 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 100.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 25 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 26 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 26 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 27 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 28 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 28 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 101.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 29 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 30 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 30 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 31 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 32 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 32 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 102.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 33 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 34 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 34 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 35 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 36 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 37 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 103.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 37 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 37 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 38 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 39 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 40 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 40 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 104.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 41 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 41 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 42 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 42 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 43 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 105.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 45 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 45 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 46 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 46 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 47 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 48 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 106.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 48 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 49 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 50 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 50 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 51 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 52 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 107.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 53 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 53 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 54 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 54 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 55 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 56 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 108.[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 57 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 57 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 57 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 58 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 59 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 7 min, 59 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 109.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 0 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 0 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 1 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 2 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 3 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 3 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 110.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 4 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 4 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 5 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 6 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 7 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 7 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 111.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 8 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 8 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 9 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 10 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 11 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 11 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 112.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 12 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 12 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 13 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 13 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 15 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 15 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 113.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 16 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 16 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 17 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 17 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 18 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 19 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 114.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 19 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 20 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 20 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 21 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 22 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 23 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 115.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 23 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 24 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 26 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 27 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 116.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 27 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 28 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 29 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 29 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 32 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 117.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 33 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 35 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 37 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 40 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 45 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 47 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 118.[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 50 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 52 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 55 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 8 min, 58 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 2 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 119.[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 7 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 9 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 11 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 14 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 19 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 21 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 120.[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 26 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 32 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 38 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 44 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 46 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 121.[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 48 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 49 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 9 min, 55 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 1 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 122.[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 3 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 5 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 8 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 16 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 19 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 123.[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 21 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 23 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 26 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 31 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 40 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 124.[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 46 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 49 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 10 min, 58 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 0 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 125.[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 2 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 4 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 6 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 10 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 13 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 15 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 126.[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 16 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 19 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 20 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 24 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 27 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 127.[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 30 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 32 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 36 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 40 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 43 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 128.[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 46 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 48 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 50 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 53 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 129.[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 56 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 57 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 11 min, 59 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 0 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 3 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 130.[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 6 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 7 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 9 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 13 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 15 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 131.[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 16 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 17 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 20 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 23 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 34 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 132.[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 37 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 38 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 40 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 41 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 44 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 45 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 133.[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 47 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 49 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 51 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 56 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 134.[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 57 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 12 min, 58 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 0 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 2 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 5 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 7 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 135.[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 9 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 10 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 12 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 13 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 16 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 18 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 136.[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 22 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 23 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 27 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 30 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 36 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 137.[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 39 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 40 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 42 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 43 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 46 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 47 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 138.[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 49 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 50 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 52 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 53 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 57 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 13 min, 58 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 139.[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 0 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 1 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 2 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 4 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 9 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 11 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 140.[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 15 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 22 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 28 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 29 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 141.[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 30 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 31 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 32 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 34 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 36 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 142.[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 39 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 41 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 43 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 44 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 46 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 49 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 143.[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 50 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 53 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 54 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 58 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 14 min, 59 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 144.[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 1 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 2 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 4 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 5 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 11 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 14 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 145.[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 17 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 19 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 22 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 28 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 29 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 146.[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 30 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 31 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 33 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 34 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 38 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 39 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 147.[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 41 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 42 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 44 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 46 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 48 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 50 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 148.[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 51 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 52 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 54 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 15 min, 56 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 149.[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 7 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 9 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 13 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 17 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 20 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 21 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 150.[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 24 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 25 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 28 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 31 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 33 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 151.[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 35 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 36 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 37 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 38 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 42 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 152.[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 45 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 46 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 49 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 16 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 3 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 153.[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 6 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 8 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 10 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 12 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 14 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 15 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 154.[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 17 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 19 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 21 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 24 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 25 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 155.[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 27 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 28 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 29 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 31 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 35 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 156.[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 41 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 43 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 48 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 54 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 56 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 157.[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 57 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 58 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 17 min, 59 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 0 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 3 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 5 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 158.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 7 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 8 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 10 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 11 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 12 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 13 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 159.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 13 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 14 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 14 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 15 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 17 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 17 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 160.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 18 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 18 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 18 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 19 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 20 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 21 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 161.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 21 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 22 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 22 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 23 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 24 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 24 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 162.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 25 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 25 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 26 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 26 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 27 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 28 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 163.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 29 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 29 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 30 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 30 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 32 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 32 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 164.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 33 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 33 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 34 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 35 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 36 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 37 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 165.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 37 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 38 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 38 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 39 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 40 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 40 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 166.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 41 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 41 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 42 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 43 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 44 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 44 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 167.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 45 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 45 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 46 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 46 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 48 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 48 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 168.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 49 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 49 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 50 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 50 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 52 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 52 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 169.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 53 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 53 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 54 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 55 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 56 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 57 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 170.[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 57 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 58 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 58 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 18 min, 59 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 0 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 0 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 171.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 1 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 1 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 2 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 3 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 4 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 4 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 172.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 5 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 5 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 6 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 6 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 7 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 8 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 173.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 8 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 9 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 9 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 10 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 11 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 11 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 174.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 12 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 12 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 13 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 14 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 15 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 15 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 175.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 16 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 16 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 17 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 18 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 19 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 19 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 176.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 20 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 20 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 21 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 21 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 22 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 23 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 177.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 23 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 24 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 24 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 25 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 26 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 26 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 178.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 27 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 27 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 28 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 29 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 30 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 30 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 179.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 31 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 31 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 32 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 33 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 34 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 34 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 180.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 35 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 35 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 36 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 37 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 38 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 38 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 181.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 39 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 39 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 40 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 41 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 42 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 42 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 182.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 43 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 43 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 44 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 45 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 46 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 46 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 183.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 47 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 47 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 48 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 48 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 49 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 50 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 184.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 50 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 51 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 51 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 52 sec,Fuzzing test case #3 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 53 sec,Fuzzing test case #4 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 54 sec,Fuzzing test case #5 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0mEntering queue cycle 185.[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 54 sec,Fuzzing test case #0 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 55 sec,Fuzzing test case #1 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[1;94m[*] [0m0 days, 0 hrs, 19 min, 56 sec,Fuzzing test case #2 (6 total, 57 transitions, 0 uniq crashes found)...[0m
+[?25h[1;91m
+
++++ Testing aborted by user +++
+[0m[1;92m[+] [0mWe're done here. Have a nice day!
+[0m
