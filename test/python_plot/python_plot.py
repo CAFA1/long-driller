@@ -95,14 +95,16 @@ plt.plot(time_list_probe_1, trans_list_probe_1, color='blue', linestyle='-.',lab
 plt.plot(time_list_probe_2, trans_list_probe_2, color='fuchsia', linestyle=':',label='FB-SA(N=2)')
 plt.plot(time_list_probe_3, trans_list_probe_3, color='indigo', linestyle='--',label='FB-SA(N=3)')
 plt.plot(time_list_probe_4, trans_list_probe_4, color='green', linestyle='-',label='FB-SA(N=4)')
-plt.plot(time_list_origin, trans_list_origin, color='red', linestyle='--',label='DrillerCore')
+plt.plot(time_list_origin, trans_list_origin, color='red', linestyle='--',label='DrillerCore') #
+
+plt.annotate('N=3',xy=(348.3,60),xytext=(190.3,60.3),arrowprops=dict(facecolor='indigo', shrink=0.05))
 plot_file_origin.close()
 plot_file_probe_1.close()
 plot_file_probe_2.close()
 plot_file_probe_3.close()
 plot_file_probe_4.close()
-
-plt.legend(loc=2) 
+#set front size
+plt.legend(loc=2,prop={'size':12}) 
 plt.xlabel(u'时间（秒）',fontproperties=custom_font)
 plt.ylabel(u'状态转移数',fontproperties=custom_font)
 plt.savefig('driller_sample.png')
