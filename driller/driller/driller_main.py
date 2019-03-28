@@ -157,6 +157,8 @@ class Driller(object):
                 w = self._writeout(state.history.bbl_addrs[-1], state)
                 if w is not None:
                     yield w
+                #long
+                l.debug("_symbolic_explorer_stub: %#x",state.addr)
                 for i in self._symbolic_explorer_stub(state):
                     yield i
 
@@ -189,6 +191,7 @@ class Driller(object):
             try:
                 if dumpable.satisfiable():
                     #long
+                    l.debug('in explore: %#x',dumpable.addr)
                     l.warning('output '+dumpable.posix.dumps(1))
                     w = self._writeout(dumpable.history.bbl_addrs[-1], dumpable)
                     if w is not None:

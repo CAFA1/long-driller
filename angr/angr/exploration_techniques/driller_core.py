@@ -61,26 +61,29 @@ class DrillerCore(ExplorationTechnique):
 
                 transition = (prev_addr, state.addr)
                 mapped_to = self.project.loader.find_object_containing(state.addr).binary
-
-                l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
+                #long
+                #l.debug("Found %#x -> %#x transition.", transition[0], transition[1])
 
                 if not hit and transition not in self.encounters and not self._has_false(state) and mapped_to != 'cle##externs':
                     state.preconstrainer.remove_preconstraints()
 
                     if state.satisfiable():
                         # A completely new state transition.
-                        l.debug("Found a completely new transition, putting into 'diverted' stash.")
+                        #l.debug("Found a completely new transition, putting into 'diverted' stash.")
                         simgr.stashes['diverted'].append(state)
                         self.encounters.add(transition)
 
                     else:
-                        l.debug("State at %#x is not satisfiable.", transition[1])
+                        #l.debug("State at %#x is not satisfiable.", transition[1])
+                        pass
 
                 elif self._has_false(state):
-                    l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
+                    #l.debug("State at %#x is not satisfiable even remove preconstraints.", transition[1])
+                    pass
 
                 else:
-                    l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                    #l.debug("%#x -> %#x transition has already been encountered.", transition[0], transition[1])
+                    pass
 
         return simgr
 
