@@ -7,7 +7,7 @@ import driller
 import argparse
 import subprocess
 import multiprocessing
-
+import time 
 l = logging.getLogger("local_callback")
 #long
 l.setLevel(logging.DEBUG)
@@ -18,6 +18,7 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
     _bitmap_path = os.path.join(_fuzzer_out_dir, 'fuzzer-master', "fuzz_bitmap")
     _timeout = drill._worker_timeout
     #long
+    #t1=time.time()
     l.warning("starting drilling of %s, %s", os.path.basename(_binary_path), os.path.basename(_path_to_input_to_drill))
     args = (
         "timeout", "-k", str(_timeout+10), str(_timeout),
@@ -29,6 +30,9 @@ def _run_drill(drill, fuzz, _path_to_input_to_drill, length_extension=None):
 
     p = subprocess.Popen(args, stdout=subprocess.PIPE)
     print p.communicate()
+    #t2=time.time()
+    #l.warning('onetime!!!!!!!')
+    #l.warning(str( (int(round((t2-t1) * 1000)))))
 
 
 class LocalCallback(object):

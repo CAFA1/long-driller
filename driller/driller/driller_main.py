@@ -9,6 +9,7 @@ import subprocess
 import angr
 import tracer
 from . import config
+import time
 
 
 l = logging.getLogger("driller.driller")
@@ -136,7 +137,7 @@ class Driller(object):
         simgr.use_technique(self._core)
 
         self._set_concretizations(simgr.one_active)
-
+        t1=time.time()
         l.debug("Drilling into %r.", self.input)
         l.debug("Input is %r.", self.input)
 
@@ -167,6 +168,9 @@ class Driller(object):
         file_bit_map.close()
         l.warning('write bitmap: '+'/dev/shm/work/'+self.identifier+'/driller/queue/bitmap')
         '''
+        t2=time.time()
+        l.warning('onetime!!!!!!!')
+        l.warning(str( (int(round((t2-t1) * 1000)))))
         
 
 ### EXPLORER

@@ -157,10 +157,11 @@ class DrillerCore(ExplorationTechnique):
                         logfile.write('%s %s %s : %s \n' % (cur_time.hour,cur_time.minute,cur_time.second,log_str))
                         logfile.close()
                         #long online symbolic thread to explore this address
-                        thread1 = sys_threading.Thread(target = OnlineExplore,args=[self.project.filename,this_addr])  
-                        thread1.setDaemon(True)
-                        thread1.start()
-                        thread1.join(600)
+                        if 0:
+                            thread1 = sys_threading.Thread(target = OnlineExplore,args=[self.project.filename,this_addr])  
+                            thread1.setDaemon(True)
+                            thread1.start()
+                            thread1.join(600)
                         #time.sleep(10000)
                         return 1
             prev_states=[]
